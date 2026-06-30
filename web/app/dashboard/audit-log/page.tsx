@@ -268,7 +268,7 @@ export default function AuditLogPage() {
       {!loading && entries.length > 0 && (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
           <Stat label="Total events" value={kpis.total} tone="violet" />
-          <Stat label="Distinct actors" value={kpis.actors} tone="sky" />
+          <Stat label="Distinct actors" value={kpis.actors} tone="violet" />
           <Stat
             label="Most recent"
             value={kpis.last ? new Date(kpis.last).toLocaleDateString() : '—'}
