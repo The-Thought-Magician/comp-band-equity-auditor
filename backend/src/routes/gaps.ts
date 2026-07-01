@@ -191,8 +191,8 @@ const createSchema = z.object({
   dataset_id: z.string().min(1),
   band_set_id: z.string().min(1).optional().nullable(),
   dimensions: z.array(z.enum(['gender', 'ethnicity', 'level', 'role_family', 'geo'])).min(1),
-  reference_group: z.string().min(1),
-  label: z.string().min(1).optional(),
+  reference_group: z.string().min(1).optional().nullable(),
+  label: z.string().min(1).optional().nullable(),
 })
 
 // POST /runs — run gap analysis (raw + adjusted + decomposition)
@@ -230,7 +230,7 @@ router.post('/runs', authMiddleware, zValidator('json', createSchema), async (c)
       workspace_id: ws.id,
       dataset_id: body.dataset_id,
       band_set_id: body.band_set_id ?? null,
-      reference_group: body.reference_group,
+      reference_group: body.reference_group ?? null,
       summary: {},
       status: 'complete',
       created_by: userId,
@@ -242,11 +242,25 @@ router.post('/runs', authMiddleware, zValidator('json', createSchema), async (c)
 
   for (const dimension of body.dimensions) {
     const groups = groupByDimension(emps, dimension)
-    const reference = groups.get(body.reference_group) ?? []
+    // If no reference group was supplied, fall back to the largest cohort
+    // for this dimension so the analysis can still run.
+    let referenceGroup = body.reference_group ?? undefined
+    if (!referenceGroup) {
+      let largestKey: string | undefined
+      let largestSize = -1
+      for (const [cohortKey, members] of groups) {
+        if (members.length > largestSize) {
+          largestSize = members.length
+          largestKey = cohortKey
+        }
+      }
+      referenceGroup = largestKey
+    }
+    const reference = (referenceGroup ? groups.get(referenceGroup) : undefined) ?? []
     const dimResults: Array<Record<string, unknown>> = []
 
     for (const [cohortKey, members] of groups) {
-      if (cohortKey === body.reference_group) {
+      if (cohortKey === referenceGroup) {
         // Reference cohort itself: zero gap by definition, still recorded.
         resultRows.push({
           gap_run_id: run.id,

@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { eq, and } from 'drizzle-orm'
+import { eq, and, inArray } from 'drizzle-orm'
 import { db } from '../db/index.js'
 import { positionings, employees, bands, engine_runs, cohorts } from '../db/schema.js'
 import { getUserId } from '../lib/auth.js'
@@ -143,6 +143,28 @@ router.get('/distribution', async (c) => {
 // GET / — list positionings for an engine_run_id (optionally filter by flag)
 // ---------------------------------------------------------------------------
 
+/**
+ * Attach employee identity fields (name/ref, level, geo) to each positioning
+ * row so the UI can render a human-readable table without a second round trip.
+ */
+async function withEmployeeFields<T extends { employee_id: string }>(
+  rows: T[]
+): Promise<(T & { employee_name?: string; level?: string; geo?: string })[]> {
+  const ids = Array.from(new Set(rows.map((r) => r.employee_id)))
+  if (ids.length === 0) return rows
+  const emps = await db.select().from(employees).where(inArray(employees.id, ids))
+  const empMap = new Map(emps.map((e) => [e.id, e]))
+  return rows.map((r) => {
+    const emp = empMap.get(r.employee_id)
+    return {
+      ...r,
+      employee_name: emp?.name || emp?.employee_ref || undefined,
+      level: emp?.level ?? undefined,
+      geo: emp?.geo ?? undefined,
+    }
+  })
+}
+
 router.get('/', async (c) => {
   const runId = c.req.query('engine_run_id')
   const flag = c.req.query('flag')
@@ -157,7 +179,7 @@ router.get('/', async (c) => {
     const filtered = flag
       ? rows.filter((r) => (r.flags ?? []).includes(flag))
       : rows
-    return c.json(filtered)
+    return c.json(await withEmployeeFields(filtered))
   }
 
   const rows = await db
@@ -165,7 +187,7 @@ router.get('/', async (c) => {
     .from(positionings)
     .where(eq(positionings.engine_run_id, runId))
   const filtered = flag ? rows.filter((r) => (r.flags ?? []).includes(flag)) : rows
-  return c.json(filtered)
+  return c.json(await withEmployeeFields(filtered))
 })
 
 // ---------------------------------------------------------------------------
