@@ -274,8 +274,8 @@ export default function OffersPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Offer Guardrails</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Offer Guardrails</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Evaluate prospective offers against live comp bands, catch compression and equity
             risk, and keep a reviewed decision log.
           </p>
@@ -310,17 +310,17 @@ export default function OffersPage() {
               <option value="rejected">Rejected</option>
               <option value="needs_review">Needs review</option>
             </select>
-            <label className="flex items-center gap-2 text-xs text-slate-400">
+            <label className="flex items-center gap-2 text-xs text-neutral-400">
               <input
                 type="checkbox"
                 checked={flaggedOnly}
                 onChange={(e) => setFlaggedOnly(e.target.checked)}
-                className="accent-violet-500"
+                className="accent-orange-500"
               />
               Flagged only
             </label>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-neutral-500">
             {filtered.length} of {offers.length}
           </span>
         </CardHeader>
@@ -369,11 +369,11 @@ export default function OffersPage() {
                   const flags = normFlags(o.flags)
                   return (
                     <TR key={o.id}>
-                      <TD className="font-medium text-slate-200">{o.candidate_label}</TD>
-                      <TD className="text-slate-400">
+                      <TD className="font-medium text-neutral-200">{o.candidate_label}</TD>
+                      <TD className="text-neutral-400">
                         {o.level} · {o.role_family || '—'}
                       </TD>
-                      <TD className="text-slate-400">{o.geo || '—'}</TD>
+                      <TD className="text-neutral-400">{o.geo || '—'}</TD>
                       <TD className="text-right tabular-nums">
                         {dollars(o.proposed_salary, o.currency)}
                       </TD>
@@ -382,14 +382,14 @@ export default function OffersPage() {
                           {o.compa_ratio != null ? o.compa_ratio.toFixed(2) : '—'}
                         </Badge>
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-300">
+                      <TD className="text-right tabular-nums text-neutral-300">
                         {o.range_penetration != null
                           ? `${(o.range_penetration * 100).toFixed(0)}%`
                           : '—'}
                       </TD>
                       <TD>
                         {flags.length === 0 ? (
-                          <span className="text-xs text-slate-600">clean</span>
+                          <span className="text-xs text-neutral-600">clean</span>
                         ) : (
                           <div className="flex flex-wrap gap-1">
                             {flags.map((f) => (
@@ -403,7 +403,7 @@ export default function OffersPage() {
                       <TD>
                         <Badge tone={decisionTone(o.decision)}>{o.decision ?? 'pending'}</Badge>
                         {o.reviewer && (
-                          <div className="mt-0.5 text-[11px] text-slate-500">{o.reviewer}</div>
+                          <div className="mt-0.5 text-[11px] text-neutral-500">{o.reviewer}</div>
                         )}
                       </TD>
                       <TD className="text-right">
@@ -533,15 +533,15 @@ export default function OffersPage() {
           {evalError && <p className="text-sm text-rose-300">{evalError}</p>}
 
           {evalResult && (
-            <div className="rounded-xl border border-slate-800 bg-slate-950/60 p-4">
-              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-400">
+            <div className="rounded-xl border border-neutral-800 bg-neutral-950/60 p-4">
+              <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-neutral-400">
                 Evaluation result
               </h3>
               <div className="grid grid-cols-2 gap-3">
                 <div>
-                  <div className="text-xs text-slate-500">Compa-ratio</div>
+                  <div className="text-xs text-neutral-500">Compa-ratio</div>
                   <div className="mt-1 flex items-center gap-2">
-                    <span className="text-xl font-semibold text-slate-100">
+                    <span className="text-xl font-semibold text-neutral-100">
                       {evalResult.compa_ratio != null ? evalResult.compa_ratio.toFixed(2) : '—'}
                     </span>
                     <Badge tone={compaTone(evalResult.compa_ratio)}>
@@ -556,8 +556,8 @@ export default function OffersPage() {
                   </div>
                 </div>
                 <div>
-                  <div className="text-xs text-slate-500">Range penetration</div>
-                  <div className="mt-1 text-xl font-semibold text-slate-100">
+                  <div className="text-xs text-neutral-500">Range penetration</div>
+                  <div className="mt-1 text-xl font-semibold text-neutral-100">
                     {evalResult.range_penetration != null
                       ? `${(evalResult.range_penetration * 100).toFixed(0)}%`
                       : '—'}
@@ -567,15 +567,15 @@ export default function OffersPage() {
 
               {evalResult.range_penetration != null && (
                 <div className="mt-4">
-                  <div className="mb-1 flex justify-between text-[11px] text-slate-500">
+                  <div className="mb-1 flex justify-between text-[11px] text-neutral-500">
                     <span>min</span>
                     <span>mid</span>
                     <span>max</span>
                   </div>
-                  <div className="relative h-2 rounded-full bg-slate-800">
-                    <div className="absolute left-1/2 top-0 h-2 w-px bg-slate-600" />
+                  <div className="relative h-2 rounded-full bg-neutral-800">
+                    <div className="absolute left-1/2 top-0 h-2 w-px bg-neutral-600" />
                     <div
-                      className="absolute top-1/2 h-3 w-3 -translate-y-1/2 -translate-x-1/2 rounded-full border-2 border-slate-950 bg-violet-400"
+                      className="absolute top-1/2 h-3 w-3 -tranneutral-y-1/2 -tranneutral-x-1/2 rounded-full border-2 border-neutral-950 bg-orange-400"
                       style={{
                         left: `${Math.min(100, Math.max(0, evalResult.range_penetration * 100))}%`,
                       }}
@@ -585,9 +585,9 @@ export default function OffersPage() {
               )}
 
               {evalResult.suggested_range && (
-                <div className="mt-4 text-sm text-slate-400">
+                <div className="mt-4 text-sm text-neutral-400">
                   Suggested band range:{' '}
-                  <span className="text-slate-200">
+                  <span className="text-neutral-200">
                     {dollars(
                       evalResult.suggested_range.min_salary,
                       evalResult.suggested_range.currency ?? form.currency,
@@ -599,7 +599,7 @@ export default function OffersPage() {
                     )}
                   </span>
                   {evalResult.suggested_range.mid_salary != null && (
-                    <span className="text-slate-500">
+                    <span className="text-neutral-500">
                       {' '}
                       (mid{' '}
                       {dollars(
@@ -613,7 +613,7 @@ export default function OffersPage() {
               )}
 
               <div className="mt-4">
-                <div className="mb-1 text-xs text-slate-500">Flags</div>
+                <div className="mb-1 text-xs text-neutral-500">Flags</div>
                 {normFlags(evalResult.flags).length === 0 ? (
                   <Badge tone="green">No equity or compression risk</Badge>
                 ) : (
@@ -652,14 +652,14 @@ export default function OffersPage() {
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3 text-sm">
               <div>
-                <div className="text-xs text-slate-500">Proposed salary</div>
-                <div className="text-slate-200">
+                <div className="text-xs text-neutral-500">Proposed salary</div>
+                <div className="text-neutral-200">
                   {dollars(decideTarget.proposed_salary, decideTarget.currency)}
                 </div>
               </div>
               <div>
-                <div className="text-xs text-slate-500">Compa-ratio</div>
-                <div className="text-slate-200">
+                <div className="text-xs text-neutral-500">Compa-ratio</div>
+                <div className="text-neutral-200">
                   {decideTarget.compa_ratio != null ? decideTarget.compa_ratio.toFixed(2) : '—'}
                 </div>
               </div>
@@ -702,12 +702,12 @@ export default function OffersPage() {
 }
 
 const inputCls =
-  'rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none'
+  'rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none'
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium text-slate-400">{label}</span>
+      <span className="mb-1 block text-xs font-medium text-neutral-400">{label}</span>
       {children}
     </label>
   )

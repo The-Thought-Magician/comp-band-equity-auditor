@@ -269,8 +269,8 @@ export default function ScenariosPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Remediation Scenarios</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Remediation Scenarios</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Model what-if pay adjustments, see budget impact, and compare options side by side.
           </p>
         </div>
@@ -305,12 +305,12 @@ export default function ScenariosPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search scenarios..."
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-56 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
             />
             <select
               value={targetFilter}
               onChange={(e) => setTargetFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All targets</option>
               {TARGET_TYPES.map((t) => (
@@ -320,7 +320,7 @@ export default function ScenariosPage() {
               ))}
             </select>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-neutral-500">
             {filtered.length} of {scenarios.length}
           </span>
         </CardHeader>
@@ -359,7 +359,7 @@ export default function ScenariosPage() {
                       checked={selected.size === filtered.length && filtered.length > 0}
                       onChange={toggleAll}
                       aria-label="Select all"
-                      className="accent-violet-500"
+                      className="accent-orange-500"
                     />
                   </TH>
                   <TH>Name</TH>
@@ -380,18 +380,18 @@ export default function ScenariosPage() {
                         checked={selected.has(s.id)}
                         onChange={() => toggle(s.id)}
                         aria-label={`Select ${s.name}`}
-                        className="accent-violet-500"
+                        className="accent-orange-500"
                       />
                     </TD>
                     <TD>
                       <Link
                         href={`/dashboard/scenarios/${s.id}`}
-                        className="font-medium text-violet-300 hover:text-violet-200"
+                        className="font-medium text-orange-300 hover:text-orange-200"
                       >
                         {s.name}
                       </Link>
                     </TD>
-                    <TD className="text-slate-400">{targetLabel(s.target_type)}</TD>
+                    <TD className="text-neutral-400">{targetLabel(s.target_type)}</TD>
                     <TD className="text-right tabular-nums">{money(s.total_budget_cents)}</TD>
                     <TD className="text-right tabular-nums">
                       {s.headcount_affected ?? '—'}
@@ -542,7 +542,7 @@ export default function ScenariosPage() {
         ) : compareError ? (
           <p className="text-sm text-rose-300">{compareError}</p>
         ) : compareRows.length === 0 ? (
-          <p className="text-sm text-slate-400">No comparison data returned.</p>
+          <p className="text-sm text-neutral-400">No comparison data returned.</p>
         ) : (
           <Table>
             <THead>
@@ -557,8 +557,8 @@ export default function ScenariosPage() {
             <TBody>
               {compareRows.map((r, i) => (
                 <TR key={r.id ?? r.scenario_id ?? i}>
-                  <TD className="font-medium text-slate-200">{r.name ?? r.scenario_id ?? '—'}</TD>
-                  <TD className="text-slate-400">
+                  <TD className="font-medium text-neutral-200">{r.name ?? r.scenario_id ?? '—'}</TD>
+                  <TD className="text-neutral-400">
                     {r.target_type ? targetLabel(r.target_type) : '—'}
                   </TD>
                   <TD className="text-right tabular-nums">{money(r.total_budget_cents)}</TD>
@@ -577,7 +577,7 @@ export default function ScenariosPage() {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none'
+  'w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none'
 
 function Field({
   label,
@@ -590,9 +590,9 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 flex items-center justify-between text-xs font-medium text-slate-400">
+      <span className="mb-1 flex items-center justify-between text-xs font-medium text-neutral-400">
         {label}
-        {hint && <span className="font-normal text-slate-600">{hint}</span>}
+        {hint && <span className="font-normal text-neutral-600">{hint}</span>}
       </span>
       {children}
     </label>

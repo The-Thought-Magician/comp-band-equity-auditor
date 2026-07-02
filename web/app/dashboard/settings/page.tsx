@@ -368,8 +368,8 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100">Settings</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <h1 className="text-2xl font-semibold text-neutral-100">Settings</h1>
+        <p className="mt-1 text-sm text-neutral-400">
           Manage your workspace, comp analysis defaults, currency conversion, tags, and billing.
         </p>
       </div>
@@ -378,31 +378,31 @@ export default function SettingsPage() {
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-base font-semibold text-slate-100">Workspace</h2>
+            <h2 className="text-base font-semibold text-neutral-100">Workspace</h2>
             {workspace?.id && (
-              <span className="font-mono text-xs text-slate-500">{workspace.id.slice(0, 8)}</span>
+              <span className="font-mono text-xs text-neutral-500">{workspace.id.slice(0, 8)}</span>
             )}
           </CardHeader>
           <CardBody className="space-y-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Workspace name
               </label>
               <input
                 value={wsName}
                 onChange={(e) => setWsName(e.target.value)}
                 placeholder="Acme People Analytics"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Base currency
               </label>
               <select
                 value={wsCurrency}
                 onChange={(e) => setWsCurrency(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -410,7 +410,7 @@ export default function SettingsPage() {
                   </option>
                 ))}
               </select>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-neutral-500">
                 All salaries are normalized to this currency for analysis.
               </p>
             </div>
@@ -431,17 +431,17 @@ export default function SettingsPage() {
 
         <Card>
           <CardHeader>
-            <h2 className="text-base font-semibold text-slate-100">Comp analysis defaults</h2>
+            <h2 className="text-base font-semibold text-neutral-100">Comp analysis defaults</h2>
           </CardHeader>
           <CardBody className="space-y-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Analysis currency
               </label>
               <select
                 value={settingsCurrency}
                 onChange={(e) => setSettingsCurrency(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -451,13 +451,13 @@ export default function SettingsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Default reference group
               </label>
               <select
                 value={refGroup}
                 onChange={(e) => setRefGroup(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {REFERENCE_GROUPS.map((r) => (
                   <option key={r.value} value={r.value}>
@@ -465,12 +465,12 @@ export default function SettingsPage() {
                   </option>
                 ))}
               </select>
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-neutral-500">
                 The baseline cohort that gap analyses compare other groups against.
               </p>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Gap alert threshold (%)
               </label>
               <input
@@ -479,22 +479,22 @@ export default function SettingsPage() {
                 step={0.5}
                 value={gapThreshold}
                 onChange={(e) => setGapThreshold(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
               />
-              <p className="mt-1 text-xs text-slate-500">
+              <p className="mt-1 text-xs text-neutral-500">
                 Unexplained gaps above this percentage are flagged as material.
               </p>
             </div>
-            <label className="flex cursor-pointer items-center justify-between rounded-lg border border-slate-700 bg-slate-950 px-3 py-2.5">
+            <label className="flex cursor-pointer items-center justify-between rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2.5">
               <div>
-                <div className="text-sm font-medium text-slate-200">PII masking</div>
-                <div className="text-xs text-slate-500">Hide employee names &amp; refs in shared views.</div>
+                <div className="text-sm font-medium text-neutral-200">PII masking</div>
+                <div className="text-xs text-neutral-500">Hide employee names &amp; refs in shared views.</div>
               </div>
               <input
                 type="checkbox"
                 checked={piiMasking}
                 onChange={(e) => setPiiMasking(e.target.checked)}
-                className="h-4 w-4 accent-violet-500"
+                className="h-4 w-4 accent-orange-500"
               />
             </label>
             <div className="flex items-center gap-3">
@@ -517,8 +517,8 @@ export default function SettingsPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <div>
-            <h2 className="text-base font-semibold text-slate-100">FX rates</h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <h2 className="text-base font-semibold text-neutral-100">FX rates</h2>
+            <p className="mt-0.5 text-xs text-neutral-500">
               Conversion rates used to normalize multi-currency salaries.
             </p>
           </div>
@@ -548,10 +548,10 @@ export default function SettingsPage() {
               <TBody>
                 {fxRates.map((r) => (
                   <TR key={r.id}>
-                    <TD className="font-mono text-slate-200">{r.from_currency}</TD>
-                    <TD className="font-mono text-slate-200">{r.to_currency}</TD>
-                    <TD className="text-right font-mono text-slate-200">{r.rate}</TD>
-                    <TD className="text-slate-400">
+                    <TD className="font-mono text-neutral-200">{r.from_currency}</TD>
+                    <TD className="font-mono text-neutral-200">{r.to_currency}</TD>
+                    <TD className="text-right font-mono text-neutral-200">{r.rate}</TD>
+                    <TD className="text-neutral-400">
                       {r.created_at ? new Date(r.created_at).toLocaleDateString() : '—'}
                     </TD>
                     <TD className="text-right">
@@ -576,8 +576,8 @@ export default function SettingsPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <div>
-            <h2 className="text-base font-semibold text-slate-100">Tags</h2>
-            <p className="mt-0.5 text-xs text-slate-500">
+            <h2 className="text-base font-semibold text-neutral-100">Tags</h2>
+            <p className="mt-0.5 text-xs text-neutral-500">
               Labels you can apply to employees for cohorting and bulk actions.
             </p>
           </div>
@@ -598,7 +598,7 @@ export default function SettingsPage() {
               {tags.map((t) => (
                 <span
                   key={t.id}
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-700 bg-slate-900 py-1 pl-2.5 pr-1.5 text-sm text-slate-200"
+                  className="inline-flex items-center gap-2 rounded-full border border-neutral-700 bg-neutral-900 py-1 pl-2.5 pr-1.5 text-sm text-neutral-200"
                 >
                   <span
                     className="inline-block h-2.5 w-2.5 rounded-full"
@@ -609,7 +609,7 @@ export default function SettingsPage() {
                   <button
                     onClick={() => deleteTag(t.id)}
                     disabled={deletingTag === t.id}
-                    className="rounded-full p-0.5 text-slate-500 hover:bg-slate-800 hover:text-rose-300 disabled:opacity-50"
+                    className="rounded-full p-0.5 text-neutral-500 hover:bg-neutral-800 hover:text-rose-300 disabled:opacity-50"
                     aria-label={`Delete tag ${t.name}`}
                   >
                     ✕
@@ -624,28 +624,28 @@ export default function SettingsPage() {
       {/* Billing */}
       <Card>
         <CardHeader>
-          <h2 className="text-base font-semibold text-slate-100">Billing &amp; plan</h2>
+          <h2 className="text-base font-semibold text-neutral-100">Billing &amp; plan</h2>
         </CardHeader>
         <CardBody className="space-y-4">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-3">
               <div>
-                <div className="text-xs uppercase tracking-wide text-slate-400">Current plan</div>
+                <div className="text-xs uppercase tracking-wide text-neutral-400">Current plan</div>
                 <div className="mt-1 flex items-center gap-2">
-                  <span className="text-xl font-semibold text-slate-100">{planName}</span>
+                  <span className="text-xl font-semibold text-neutral-100">{planName}</span>
                   <Badge tone={isPro ? 'green' : 'neutral'}>
                     {billing?.subscription?.status ?? (isPro ? 'active' : 'free')}
                   </Badge>
                 </div>
                 {billing?.plan && (
-                  <div className="mt-1 text-xs text-slate-500">
+                  <div className="mt-1 text-xs text-neutral-500">
                     {billing.plan.price_cents > 0
                       ? `${fmtMoney(billing.plan.price_cents)} / month`
                       : 'No charge'}
                   </div>
                 )}
                 {billing?.subscription?.current_period_end && (
-                  <div className="mt-0.5 text-xs text-slate-500">
+                  <div className="mt-0.5 text-xs text-neutral-500">
                     Renews {new Date(billing.subscription.current_period_end).toLocaleDateString()}
                   </div>
                 )}
@@ -677,7 +677,7 @@ export default function SettingsPage() {
           </div>
           {billingMsg && <p className="text-sm text-amber-300">{billingMsg}</p>}
           {!billing?.stripeEnabled && (
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-neutral-500">
               Billing actions are disabled in this environment because Stripe credentials are not set.
               Upgrade and portal flows activate automatically once configured.
             </p>
@@ -704,13 +704,13 @@ export default function SettingsPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 From
               </label>
               <select
                 value={fxForm.from_currency}
                 onChange={(e) => setFxForm({ ...fxForm, from_currency: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -720,13 +720,13 @@ export default function SettingsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 To
               </label>
               <select
                 value={fxForm.to_currency}
                 onChange={(e) => setFxForm({ ...fxForm, to_currency: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {CURRENCIES.map((c) => (
                   <option key={c} value={c}>
@@ -737,7 +737,7 @@ export default function SettingsPage() {
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Rate (1 {fxForm.from_currency} = ? {fxForm.to_currency})
             </label>
             <input
@@ -747,7 +747,7 @@ export default function SettingsPage() {
               value={fxForm.rate}
               onChange={(e) => setFxForm({ ...fxForm, rate: e.target.value })}
               placeholder="1.0850"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
             />
           </div>
           {fxError && <p className="text-sm text-rose-300">{fxError}</p>}
@@ -772,18 +772,18 @@ export default function SettingsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Tag name
             </label>
             <input
               value={tagForm.name}
               onChange={(e) => setTagForm({ ...tagForm, name: e.target.value })}
               placeholder="Flight risk"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Color
             </label>
             <div className="flex flex-wrap gap-2">
@@ -794,8 +794,8 @@ export default function SettingsPage() {
                   onClick={() => setTagForm({ ...tagForm, color: c.value })}
                   className={`flex items-center gap-1.5 rounded-lg border px-3 py-1.5 text-sm ${
                     tagForm.color === c.value
-                      ? 'border-violet-500 bg-violet-500/10 text-slate-100'
-                      : 'border-slate-700 bg-slate-950 text-slate-400 hover:border-slate-600'
+                      ? 'border-orange-500 bg-orange-500/10 text-neutral-100'
+                      : 'border-neutral-700 bg-neutral-950 text-neutral-400 hover:border-neutral-600'
                   }`}
                 >
                   <span

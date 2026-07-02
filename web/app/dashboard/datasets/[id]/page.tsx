@@ -301,7 +301,7 @@ export default function DatasetDetailPage() {
   if (error && !dataset) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/datasets" className="text-sm text-slate-400 hover:text-white">
+        <Link href="/dashboard/datasets" className="text-sm text-neutral-400 hover:text-white">
           ← Datasets
         </Link>
         <div className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-300">
@@ -316,7 +316,7 @@ export default function DatasetDetailPage() {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/dashboard/datasets" className="text-sm text-slate-400 hover:text-white">
+        <Link href="/dashboard/datasets" className="text-sm text-neutral-400 hover:text-white">
           ← Datasets
         </Link>
       </div>
@@ -324,11 +324,11 @@ export default function DatasetDetailPage() {
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-semibold text-slate-100">{dataset?.label ?? 'Dataset'}</h1>
+            <h1 className="text-2xl font-semibold text-neutral-100">{dataset?.label ?? 'Dataset'}</h1>
             <Badge tone="violet">v{dataset?.version ?? '—'}</Badge>
             {dataset?.status && <Badge>{dataset.status}</Badge>}
           </div>
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 text-sm text-neutral-500">
             Source {dataset?.source ?? '—'} · {dataset?.row_count ?? employees.length} rows
           </p>
         </div>
@@ -361,7 +361,7 @@ export default function DatasetDetailPage() {
       {validation && (
         <Card>
           <CardHeader className="flex items-center justify-between">
-            <h2 className="text-base font-semibold text-slate-100">Validation</h2>
+            <h2 className="text-base font-semibold text-neutral-100">Validation</h2>
             <Badge tone={validation.valid ? 'green' : 'rose'}>
               {validation.valid ? 'Valid' : `${validation.errors?.length ?? 0} errors`}
             </Badge>
@@ -389,7 +389,7 @@ export default function DatasetDetailPage() {
             </h2>
           </CardHeader>
           <CardBody className="max-h-48 overflow-y-auto">
-            <pre className="whitespace-pre-wrap break-words text-xs text-slate-400">
+            <pre className="whitespace-pre-wrap break-words text-xs text-neutral-400">
               {JSON.stringify(rejects.slice(0, 25), null, 2)}
             </pre>
           </CardBody>
@@ -404,12 +404,12 @@ export default function DatasetDetailPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search name, ref, role..."
-              className="min-w-[200px] flex-1 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-violet-500 focus:outline-none"
+              className="min-w-[200px] flex-1 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder-neutral-600 focus:border-orange-500 focus:outline-none"
             />
             <select
               value={levelFilter}
               onChange={(e) => setLevelFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All levels</option>
               {levels.map((l) => (
@@ -421,7 +421,7 @@ export default function DatasetDetailPage() {
             <select
               value={geoFilter}
               onChange={(e) => setGeoFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All geos</option>
               {geos.map((g) => (
@@ -433,7 +433,7 @@ export default function DatasetDetailPage() {
             <select
               value={genderFilter}
               onChange={(e) => setGenderFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All genders</option>
               {genders.map((g) => (
@@ -457,8 +457,8 @@ export default function DatasetDetailPage() {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 border-t border-slate-800 pt-3">
-            <span className="text-xs text-slate-500">
+          <div className="flex flex-wrap items-center gap-2 border-t border-neutral-800 pt-3">
+            <span className="text-xs text-neutral-500">
               {filtered.length} shown · {selected.size} selected
             </span>
             <div className="ml-auto flex gap-2">
@@ -511,7 +511,7 @@ export default function DatasetDetailPage() {
                       type="checkbox"
                       checked={allVisibleSelected}
                       onChange={toggleAll}
-                      className="accent-violet-600"
+                      className="accent-orange-600"
                       aria-label="Select all"
                     />
                   </TH>
@@ -529,20 +529,20 @@ export default function DatasetDetailPage() {
               </THead>
               <TBody>
                 {filtered.map((e) => (
-                  <TR key={e.id} className={selected.has(e.id) ? 'bg-violet-500/5' : ''}>
+                  <TR key={e.id} className={selected.has(e.id) ? 'bg-orange-500/5' : ''}>
                     <TD>
                       <input
                         type="checkbox"
                         checked={selected.has(e.id)}
                         onChange={() => toggleOne(e.id)}
-                        className="accent-violet-600"
+                        className="accent-orange-600"
                         aria-label={`Select ${e.employee_ref ?? e.id}`}
                       />
                     </TD>
                     <TD>
-                      <div className="font-medium text-slate-200">{e.name ?? e.employee_ref ?? '—'}</div>
+                      <div className="font-medium text-neutral-200">{e.name ?? e.employee_ref ?? '—'}</div>
                       {e.employee_ref && e.name && (
-                        <div className="text-xs text-slate-500">{e.employee_ref}</div>
+                        <div className="text-xs text-neutral-500">{e.employee_ref}</div>
                       )}
                     </TD>
                     <TD>{e.level ?? '—'}</TD>
@@ -568,7 +568,7 @@ export default function DatasetDetailPage() {
                           ))}
                         </div>
                       ) : (
-                        <span className="text-slate-600">—</span>
+                        <span className="text-neutral-600">—</span>
                       )}
                     </TD>
                     <TD className="text-right">
@@ -603,14 +603,14 @@ export default function DatasetDetailPage() {
         <div className="space-y-3">
           {EDIT_FIELDS.map((f) => (
             <label key={f.key as string} className="block">
-              <span className="mb-1 block text-xs font-medium text-slate-400">{f.label}</span>
+              <span className="mb-1 block text-xs font-medium text-neutral-400">{f.label}</span>
               <input
                 type={f.numeric ? 'number' : 'text'}
                 value={editForm[f.key as string] ?? ''}
                 onChange={(e) =>
                   setEditForm((prev) => ({ ...prev, [f.key as string]: e.target.value }))
                 }
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
               />
             </label>
           ))}
@@ -650,12 +650,12 @@ export default function DatasetDetailPage() {
             </Button>
           </div>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-400">Tag</span>
+            <span className="mb-1 block text-xs font-medium text-neutral-400">Tag</span>
             <input
               value={tagValue}
               onChange={(e) => setTagValue(e.target.value)}
               placeholder="e.g. flight-risk"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder-neutral-600 focus:border-orange-500 focus:outline-none"
             />
           </label>
           {bulkError && <p className="text-sm text-rose-400">{bulkError}</p>}
@@ -679,16 +679,16 @@ export default function DatasetDetailPage() {
         }
       >
         <div className="space-y-3">
-          <p className="text-xs text-slate-500">
+          <p className="text-xs text-neutral-500">
             Leave a field blank to keep it unchanged for the selected employees.
           </p>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-400">Level</span>
+            <span className="mb-1 block text-xs font-medium text-neutral-400">Level</span>
             <input
               value={remapLevel}
               onChange={(e) => setRemapLevel(e.target.value)}
               list="level-options"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
             />
             <datalist id="level-options">
               {levels.map((l) => (
@@ -697,12 +697,12 @@ export default function DatasetDetailPage() {
             </datalist>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-400">Geo</span>
+            <span className="mb-1 block text-xs font-medium text-neutral-400">Geo</span>
             <input
               value={remapGeo}
               onChange={(e) => setRemapGeo(e.target.value)}
               list="geo-options"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
             />
             <datalist id="geo-options">
               {geos.map((g) => (
@@ -711,11 +711,11 @@ export default function DatasetDetailPage() {
             </datalist>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-400">Role family</span>
+            <span className="mb-1 block text-xs font-medium text-neutral-400">Role family</span>
             <input
               value={remapRoleFamily}
               onChange={(e) => setRemapRoleFamily(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
             />
           </label>
           {bulkError && <p className="text-sm text-rose-400">{bulkError}</p>}

@@ -381,8 +381,8 @@ export default function DatasetsPage() {
     <div className="space-y-6">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Datasets</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold text-neutral-100">Datasets</h1>
+          <p className="mt-1 text-sm text-neutral-500">
             Version-controlled employee snapshots. Upload a file, map columns, and diff versions.
           </p>
         </div>
@@ -459,7 +459,7 @@ export default function DatasetsPage() {
                     <TD>
                       <Link
                         href={`/dashboard/datasets/${d.id}`}
-                        className="font-medium text-slate-200 hover:text-violet-300"
+                        className="font-medium text-neutral-200 hover:text-orange-300"
                       >
                         {d.label ?? d.id}
                       </Link>
@@ -470,13 +470,13 @@ export default function DatasetsPage() {
                       {rejectedCount(d) > 0 ? (
                         <Badge tone="amber">{rejectedCount(d)}</Badge>
                       ) : (
-                        <span className="text-slate-600">0</span>
+                        <span className="text-neutral-600">0</span>
                       )}
                     </TD>
                     <TD>
                       <Badge tone={statusTone(d.status)}>{d.status ?? 'unknown'}</Badge>
                     </TD>
-                    <TD className="text-slate-500">{fmtDate(d.created_at)}</TD>
+                    <TD className="text-neutral-500">{fmtDate(d.created_at)}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
                         <Link href={`/dashboard/datasets/${d.id}`}>
@@ -519,27 +519,27 @@ export default function DatasetsPage() {
         <div className="space-y-5">
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="block">
-              <span className="mb-1 block text-xs font-medium text-slate-400">Label</span>
+              <span className="mb-1 block text-xs font-medium text-neutral-400">Label</span>
               <input
                 value={label}
                 onChange={(e) => setLabel(e.target.value)}
                 placeholder="Q2 2026 snapshot"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder-neutral-600 focus:border-orange-500 focus:outline-none"
               />
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-medium text-slate-400">Source</span>
+              <span className="mb-1 block text-xs font-medium text-neutral-400">Source</span>
               <input
                 value={source}
                 onChange={(e) => setSource(e.target.value)}
                 placeholder="upload / workday / csv"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-100 placeholder-neutral-600 focus:border-orange-500 focus:outline-none"
               />
             </label>
           </div>
 
           <label className="block">
-            <span className="mb-1 block text-xs font-medium text-slate-400">
+            <span className="mb-1 block text-xs font-medium text-neutral-400">
               Employee file (CSV or JSON)
             </span>
             <input
@@ -549,10 +549,10 @@ export default function DatasetsPage() {
                 const f = e.target.files?.[0]
                 if (f) void onFile(f)
               }}
-              className="block w-full text-sm text-slate-400 file:mr-3 file:rounded-lg file:border-0 file:bg-violet-600 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-violet-500"
+              className="block w-full text-sm text-neutral-400 file:mr-3 file:rounded-lg file:border-0 file:bg-orange-600 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white hover:file:bg-orange-500"
             />
             {fileName && (
-              <span className="mt-1 block text-xs text-slate-500">
+              <span className="mt-1 block text-xs text-neutral-500">
                 {fileName} · {(jsonRows?.length ?? allRows.length).toLocaleString()} rows detected
               </span>
             )}
@@ -561,7 +561,7 @@ export default function DatasetsPage() {
           {headers.length > 0 && (
             <div className="space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+                <h3 className="text-xs font-semibold uppercase tracking-wide text-neutral-400">
                   Column mapping
                 </h3>
                 {missingRequired.length > 0 ? (
@@ -570,10 +570,10 @@ export default function DatasetsPage() {
                   <Badge tone="green">required fields mapped</Badge>
                 )}
               </div>
-              <div className="max-h-56 space-y-2 overflow-y-auto rounded-lg border border-slate-800 p-3">
+              <div className="max-h-56 space-y-2 overflow-y-auto rounded-lg border border-neutral-800 p-3">
                 {headers.map((h) => (
                   <div key={h} className="grid grid-cols-2 items-center gap-3">
-                    <span className="truncate text-sm text-slate-300" title={h}>
+                    <span className="truncate text-sm text-neutral-300" title={h}>
                       {h}
                     </span>
                     <select
@@ -581,7 +581,7 @@ export default function DatasetsPage() {
                       onChange={(e) =>
                         setMapping((m) => ({ ...m, [h]: e.target.value as TargetField | '' }))
                       }
-                      className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+                      className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-1.5 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
                     >
                       <option value="">— ignore —</option>
                       {TARGET_FIELDS.map((t) => (
@@ -597,28 +597,28 @@ export default function DatasetsPage() {
 
               {previewRows.length > 0 && (
                 <div>
-                  <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-slate-400">
+                  <h3 className="mb-1 text-xs font-semibold uppercase tracking-wide text-neutral-400">
                     Preview
                   </h3>
-                  <div className="overflow-x-auto rounded-lg border border-slate-800">
+                  <div className="overflow-x-auto rounded-lg border border-neutral-800">
                     <table className="w-full text-left text-xs">
-                      <thead className="bg-slate-900/80 text-slate-400">
+                      <thead className="bg-neutral-900/80 text-neutral-400">
                         <tr>
                           {headers.map((h) => (
                             <th key={h} className="whitespace-nowrap px-2 py-1.5 font-medium">
                               {h}
                               {mapping[h] && (
-                                <span className="ml-1 text-violet-400">→{mapping[h]}</span>
+                                <span className="ml-1 text-orange-400">→{mapping[h]}</span>
                               )}
                             </th>
                           ))}
                         </tr>
                       </thead>
-                      <tbody className="divide-y divide-slate-800">
+                      <tbody className="divide-y divide-neutral-800">
                         {previewRows.map((r, i) => (
                           <tr key={i}>
                             {headers.map((_, j) => (
-                              <td key={j} className="whitespace-nowrap px-2 py-1.5 text-slate-300">
+                              <td key={j} className="whitespace-nowrap px-2 py-1.5 text-neutral-300">
                                 {r[j] ?? ''}
                               </td>
                             ))}
@@ -656,11 +656,11 @@ export default function DatasetsPage() {
         <div className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <label className="block">
-              <span className="mb-1 block text-xs font-medium text-slate-400">Base version</span>
+              <span className="mb-1 block text-xs font-medium text-neutral-400">Base version</span>
               <select
                 value={diffA}
                 onChange={(e) => setDiffA(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
               >
                 {datasets.map((d) => (
                   <option key={d.id} value={d.id}>
@@ -670,11 +670,11 @@ export default function DatasetsPage() {
               </select>
             </label>
             <label className="block">
-              <span className="mb-1 block text-xs font-medium text-slate-400">Compare to</span>
+              <span className="mb-1 block text-xs font-medium text-neutral-400">Compare to</span>
               <select
                 value={diffB}
                 onChange={(e) => setDiffB(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2 py-2 text-sm text-slate-100 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-2 text-sm text-neutral-100 focus:border-orange-500 focus:outline-none"
               >
                 {datasets.map((d) => (
                   <option key={d.id} value={d.id}>
@@ -696,7 +696,7 @@ export default function DatasetsPage() {
           )}
 
           {diffResult && (diffResult.changed?.length ?? 0) > 0 && (
-            <div className="max-h-48 overflow-y-auto rounded-lg border border-slate-800 p-3 text-xs text-slate-400">
+            <div className="max-h-48 overflow-y-auto rounded-lg border border-neutral-800 p-3 text-xs text-neutral-400">
               <pre className="whitespace-pre-wrap break-words">
                 {JSON.stringify(diffResult.changed?.slice(0, 25), null, 2)}
               </pre>
@@ -719,9 +719,9 @@ function Stat({
 }) {
   const toneText = { green: 'text-emerald-300', rose: 'text-rose-300', amber: 'text-amber-300' }
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-950/60 px-4 py-3 text-center">
+    <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 px-4 py-3 text-center">
       <div className={`text-2xl font-semibold ${toneText[tone]}`}>{count}</div>
-      <div className="text-xs uppercase tracking-wide text-slate-500">{label}</div>
+      <div className="text-xs uppercase tracking-wide text-neutral-500">{label}</div>
     </div>
   )
 }

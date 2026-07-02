@@ -147,8 +147,8 @@ export default function NotificationsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Notifications</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Notifications</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Engine runs, gap flags, guardrail breaches, and sign-off requests land here.
           </p>
         </div>
@@ -172,11 +172,11 @@ export default function NotificationsPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="inline-flex rounded-lg border border-slate-700 bg-slate-950 p-0.5 text-sm">
+          <div className="inline-flex rounded-lg border border-neutral-700 bg-neutral-950 p-0.5 text-sm">
             <button
               onClick={() => setTab('all')}
               className={`rounded-md px-3 py-1 transition-colors ${
-                tab === 'all' ? 'bg-violet-600 text-white' : 'text-slate-400 hover:text-slate-200'
+                tab === 'all' ? 'bg-orange-600 text-white' : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
               All
@@ -184,7 +184,7 @@ export default function NotificationsPage() {
             <button
               onClick={() => setTab('unread')}
               className={`rounded-md px-3 py-1 transition-colors ${
-                tab === 'unread' ? 'bg-violet-600 text-white' : 'text-slate-400 hover:text-slate-200'
+                tab === 'unread' ? 'bg-orange-600 text-white' : 'text-neutral-400 hover:text-neutral-200'
               }`}
             >
               Unread{unreadCount ? ` · ${unreadCount}` : ''}
@@ -194,7 +194,7 @@ export default function NotificationsPage() {
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All types</option>
               {types.map((t) => (
@@ -237,12 +237,12 @@ export default function NotificationsPage() {
               />
             </div>
           ) : (
-            <ul className="divide-y divide-slate-800">
+            <ul className="divide-y divide-neutral-800">
               {filtered.map((n) => (
                 <li
                   key={n.id}
                   className={`flex items-start gap-3 px-5 py-4 transition-colors ${
-                    n.read ? 'bg-transparent' : 'bg-violet-500/5'
+                    n.read ? 'bg-transparent' : 'bg-orange-500/5'
                   }`}
                 >
                   <div className="mt-0.5 text-xl" aria-hidden>
@@ -252,19 +252,19 @@ export default function NotificationsPage() {
                     <div className="flex flex-wrap items-center gap-2">
                       {!n.read && (
                         <span
-                          className="h-2 w-2 shrink-0 rounded-full bg-violet-400"
+                          className="h-2 w-2 shrink-0 rounded-full bg-orange-400"
                           aria-label="Unread"
                         />
                       )}
                       <span
-                        className={`text-sm font-medium ${n.read ? 'text-slate-300' : 'text-slate-100'}`}
+                        className={`text-sm font-medium ${n.read ? 'text-neutral-300' : 'text-neutral-100'}`}
                       >
                         {n.title}
                       </span>
                       {n.type && <Badge tone={typeTone(n.type)}>{n.type}</Badge>}
                     </div>
-                    {n.body && <p className="mt-1 text-sm text-slate-400">{n.body}</p>}
-                    <p className="mt-1 text-xs text-slate-500">{fmtDate(n.created_at)}</p>
+                    {n.body && <p className="mt-1 text-sm text-neutral-400">{n.body}</p>}
+                    <p className="mt-1 text-xs text-neutral-500">{fmtDate(n.created_at)}</p>
                   </div>
                   {!n.read && (
                     <Button

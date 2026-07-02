@@ -272,8 +272,8 @@ export default function PositioningPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Positioning</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Positioning</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Run the compa-ratio engine against a dataset and band set, then inspect positionings and distribution.
           </p>
         </div>
@@ -312,11 +312,11 @@ export default function PositioningPage() {
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div className="flex flex-wrap items-center gap-2">
-                <label className="text-xs font-medium uppercase tracking-wide text-slate-400">Run</label>
+                <label className="text-xs font-medium uppercase tracking-wide text-neutral-400">Run</label>
                 <select
                   value={selectedRunId}
                   onChange={(e) => setSelectedRunId(e.target.value)}
-                  className="min-w-64 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                  className="min-w-64 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
                 >
                   {runs.map((r) => (
                     <option key={r.id} value={r.id}>
@@ -326,7 +326,7 @@ export default function PositioningPage() {
                 </select>
               </div>
               {runDetail && (
-                <div className="flex items-center gap-3 text-xs text-slate-500">
+                <div className="flex items-center gap-3 text-xs text-neutral-500">
                   <span>{labelForDataset(runDetail.dataset_id)}</span>
                   <span>·</span>
                   <span>{labelForBandSet(runDetail.band_set_id)}</span>
@@ -360,11 +360,11 @@ export default function PositioningPage() {
               {/* Distribution histogram */}
               <Card>
                 <CardHeader>
-                  <h2 className="text-sm font-semibold text-slate-200">Compa-ratio distribution</h2>
+                  <h2 className="text-sm font-semibold text-neutral-200">Compa-ratio distribution</h2>
                 </CardHeader>
                 <CardBody>
                   {buckets.length === 0 ? (
-                    <p className="py-6 text-center text-sm text-slate-500">No distribution data.</p>
+                    <p className="py-6 text-center text-sm text-neutral-500">No distribution data.</p>
                   ) : (
                     <div className="flex items-end gap-2" style={{ height: 200 }}>
                       {buckets.map((b, i) => {
@@ -376,10 +376,10 @@ export default function PositioningPage() {
                           ? 'bg-rose-500/70'
                           : isHigh
                             ? 'bg-amber-500/70'
-                            : 'bg-violet-500/70'
+                            : 'bg-orange-500/70'
                         return (
                           <div key={i} className="flex flex-1 flex-col items-center gap-1">
-                            <div className="text-xs font-medium text-slate-300">{count}</div>
+                            <div className="text-xs font-medium text-neutral-300">{count}</div>
                             <div className="flex w-full flex-1 items-end">
                               <div
                                 className={`w-full rounded-t ${color} transition-all`}
@@ -387,7 +387,7 @@ export default function PositioningPage() {
                                 title={`${b.label || b.range}: ${count}`}
                               />
                             </div>
-                            <div className="mt-1 w-full truncate text-center text-[10px] text-slate-500">
+                            <div className="mt-1 w-full truncate text-center text-[10px] text-neutral-500">
                               {b.label || b.range || `${b.min ?? ''}-${b.max ?? ''}`}
                             </div>
                           </div>
@@ -396,11 +396,11 @@ export default function PositioningPage() {
                     </div>
                   )}
                   {dist?.stats && (
-                    <div className="mt-4 flex flex-wrap gap-4 border-t border-slate-800 pt-3 text-xs text-slate-400">
+                    <div className="mt-4 flex flex-wrap gap-4 border-t border-neutral-800 pt-3 text-xs text-neutral-400">
                       {Object.entries(dist.stats).map(([k, v]) => (
                         <span key={k}>
-                          <span className="text-slate-500">{k}:</span>{' '}
-                          <span className="font-mono text-slate-300">
+                          <span className="text-neutral-500">{k}:</span>{' '}
+                          <span className="font-mono text-neutral-300">
                             {typeof v === 'number' ? v.toFixed(2) : String(v)}
                           </span>
                         </span>
@@ -418,12 +418,12 @@ export default function PositioningPage() {
                       value={search}
                       onChange={(e) => setSearch(e.target.value)}
                       placeholder="Search employee, level, geo…"
-                      className="w-64 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-violet-500 focus:outline-none"
+                      className="w-64 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
                     />
                     <select
                       value={flagFilter}
                       onChange={(e) => setFlagFilter(e.target.value)}
-                      className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                      className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
                     >
                       <option value="all">All flags</option>
                       {allFlags.map((f) => (
@@ -433,7 +433,7 @@ export default function PositioningPage() {
                       ))}
                     </select>
                   </div>
-                  <span className="text-xs text-slate-500">
+                  <span className="text-xs text-neutral-500">
                     {filteredPos.length} of {positionings.length}
                   </span>
                 </CardHeader>
@@ -468,25 +468,25 @@ export default function PositioningPage() {
                           return (
                             <TR key={p.id}>
                               <TD>
-                                <span className="font-medium text-slate-100">
+                                <span className="font-medium text-neutral-100">
                                   {p.employee_name || p.employee_id?.slice(0, 8) || '—'}
                                 </span>
                               </TD>
                               <TD>{p.level || '—'}</TD>
                               <TD>
-                                <span className="text-slate-400">{p.geo || '—'}</span>
+                                <span className="text-neutral-400">{p.geo || '—'}</span>
                               </TD>
                               <TD className="text-right">
                                 <Badge tone={compaTone(p.compa_ratio)}>{fmtRatio(p.compa_ratio)}</Badge>
                               </TD>
-                              <TD className="text-right font-mono text-slate-400">
+                              <TD className="text-right font-mono text-neutral-400">
                                 {fmtPct(p.range_penetration)}
                               </TD>
                               <TD>{p.quartile != null ? `Q${p.quartile}` : '—'}</TD>
                               <TD>
                                 <div className="flex flex-wrap gap-1">
                                   {flags.length === 0 ? (
-                                    <span className="text-slate-600">—</span>
+                                    <span className="text-neutral-600">—</span>
                                   ) : (
                                     flags.map((f) => (
                                       <Badge key={f} tone="rose">
@@ -530,13 +530,13 @@ export default function PositioningPage() {
       >
         <div className="space-y-4">
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Dataset
             </span>
             <select
               value={runForm.dataset_id}
               onChange={(e) => setRunForm({ ...runForm, dataset_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">Select dataset…</option>
               {datasets.map((d) => (
@@ -547,13 +547,13 @@ export default function PositioningPage() {
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Band set
             </span>
             <select
               value={runForm.band_set_id}
               onChange={(e) => setRunForm({ ...runForm, band_set_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">Select band set…</option>
               {bandSets.map((b) => (
@@ -565,14 +565,14 @@ export default function PositioningPage() {
             </select>
           </label>
           <label className="block">
-            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Label (optional)
             </span>
             <input
               value={runForm.label}
               onChange={(e) => setRunForm({ ...runForm, label: e.target.value })}
               placeholder="Q2 audit run"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </label>
         </div>
@@ -594,9 +594,9 @@ export default function PositioningPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-neutral-300">
           Delete{' '}
-          <span className="font-medium text-slate-100">
+          <span className="font-medium text-neutral-100">
             {deleteTarget?.label || `run ${deleteTarget?.id.slice(0, 8)}`}
           </span>{' '}
           and all its positionings? This cannot be undone.

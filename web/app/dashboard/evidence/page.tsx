@@ -203,8 +203,8 @@ export default function EvidencePacksPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Evidence Packs</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Evidence Packs</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Bundle gap analyses, remediation scenarios, and band methodology into shareable audit-ready reports.
           </p>
         </div>
@@ -225,18 +225,18 @@ export default function EvidencePacksPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search packs..."
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none sm:max-w-xs"
+            className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none sm:max-w-xs"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+            className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
           >
             <option value="all">All statuses</option>
             <option value="draft">Draft</option>
             <option value="published">Published</option>
           </select>
-          <div className="text-xs text-slate-500 sm:ml-auto">
+          <div className="text-xs text-neutral-500 sm:ml-auto">
             {filtered.length} of {packs.length}
           </div>
         </CardBody>
@@ -297,7 +297,7 @@ export default function EvidencePacksPage() {
                 <TD>
                   <Link
                     href={`/dashboard/evidence/${p.id}`}
-                    className="font-medium text-violet-300 hover:text-violet-200 hover:underline"
+                    className="font-medium text-orange-300 hover:text-orange-200 hover:underline"
                   >
                     {p.title}
                   </Link>
@@ -308,7 +308,7 @@ export default function EvidencePacksPage() {
                     {p.scenario_id && <Badge tone="violet">scenario</Badge>}
                     {p.band_set_id && <Badge tone="neutral">band set</Badge>}
                     {!p.gap_run_id && !p.scenario_id && !p.band_set_id && (
-                      <span className="text-xs text-slate-500">—</span>
+                      <span className="text-xs text-neutral-500">—</span>
                     )}
                   </div>
                 </TD>
@@ -319,17 +319,17 @@ export default function EvidencePacksPage() {
                   {p.share_token ? (
                     <button
                       onClick={() => copyShare(p.share_token as string)}
-                      className="font-mono text-xs text-violet-300 hover:text-violet-200 hover:underline"
+                      className="font-mono text-xs text-orange-300 hover:text-orange-200 hover:underline"
                       title="Copy share link"
                     >
                       {p.share_token.slice(0, 12)}… 📋
                     </button>
                   ) : (
-                    <span className="text-xs text-slate-500">not published</span>
+                    <span className="text-xs text-neutral-500">not published</span>
                   )}
                 </TD>
                 <TD>
-                  <span className="text-slate-400">
+                  <span className="text-neutral-400">
                     {p.created_at ? new Date(p.created_at).toLocaleDateString() : '—'}
                   </span>
                 </TD>
@@ -383,24 +383,24 @@ export default function EvidencePacksPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Title
             </label>
             <input
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               placeholder="Q2 Pay Equity Audit"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Gap run (optional)
             </label>
             <select
               value={form.gap_run_id}
               onChange={(e) => setForm({ ...form, gap_run_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">None</option>
               {gapRuns.map((g) => (
@@ -412,13 +412,13 @@ export default function EvidencePacksPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Scenario (optional)
             </label>
             <select
               value={form.scenario_id}
               onChange={(e) => setForm({ ...form, scenario_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">None</option>
               {scenarios.map((s) => (
@@ -429,13 +429,13 @@ export default function EvidencePacksPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Band set (optional)
             </label>
             <select
               value={form.band_set_id}
               onChange={(e) => setForm({ ...form, band_set_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">None</option>
               {bandSets.map((b) => (
@@ -446,7 +446,7 @@ export default function EvidencePacksPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Methodology notes (optional)
             </label>
             <textarea
@@ -454,7 +454,7 @@ export default function EvidencePacksPage() {
               onChange={(e) => setForm({ ...form, methodology: e.target.value })}
               rows={3}
               placeholder="Leave blank to auto-generate from the attached sources."
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
             />
           </div>
           {formError && <p className="text-sm text-rose-300">{formError}</p>}
@@ -474,12 +474,12 @@ export default function EvidencePacksPage() {
       >
         {shareToken && (
           <div className="space-y-3">
-            <p className="text-sm text-slate-300">
-              <span className="font-medium text-slate-100">{shareToken.title}</span> is now published. Anyone
+            <p className="text-sm text-neutral-300">
+              <span className="font-medium text-neutral-100">{shareToken.title}</span> is now published. Anyone
               with this read-only link can view it.
             </p>
-            <div className="flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-950 px-3 py-2">
-              <code className="flex-1 truncate text-xs text-violet-300">{shareUrl(shareToken.token)}</code>
+            <div className="flex items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2">
+              <code className="flex-1 truncate text-xs text-orange-300">{shareUrl(shareToken.token)}</code>
               <Button
                 variant="secondary"
                 className="px-3 py-1.5 text-xs"

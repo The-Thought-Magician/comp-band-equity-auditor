@@ -75,7 +75,7 @@ const ACTIONS = [
 ]
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none'
+  'w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none'
 
 function ruleLabel(t: string): string {
   return RULE_TYPES.find((r) => r.value === t)?.label ?? t
@@ -246,8 +246,8 @@ export default function AnalyticsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Analytics</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Analytics</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Pay-gap by cohort, compa-ratio distribution, remediation budget trend, and policy guardrails.
           </p>
         </div>
@@ -294,8 +294,8 @@ export default function AnalyticsPage() {
           {/* Gap by cohort */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Gap by cohort</h2>
-              <p className="mt-1 text-xs text-slate-500">
+              <h2 className="text-sm font-semibold text-neutral-200">Gap by cohort</h2>
+              <p className="mt-1 text-xs text-neutral-500">
                 Unexplained pay gap per cohort after controlling for legitimate factors.
               </p>
             </CardHeader>
@@ -324,18 +324,18 @@ export default function AnalyticsPage() {
                     return (
                       <div key={`${name}-${i}`}>
                         <div className="mb-1 flex items-center justify-between text-xs">
-                          <span className="text-slate-300">
+                          <span className="text-neutral-300">
                             {name}
                             {g.dimension && (
-                              <span className="ml-2 text-slate-500">({g.dimension})</span>
+                              <span className="ml-2 text-neutral-500">({g.dimension})</span>
                             )}
                             {g.group_size != null && (
-                              <span className="ml-2 text-slate-600">n={g.group_size}</span>
+                              <span className="ml-2 text-neutral-600">n={g.group_size}</span>
                             )}
                           </span>
                           <Badge tone={tone}>{val.toFixed(1)}%</Badge>
                         </div>
-                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2.5 w-full overflow-hidden rounded-full bg-neutral-800">
                           <div
                             className={`h-full rounded-full ${barColor}`}
                             style={{ width: `${widthPct}%` }}
@@ -352,8 +352,8 @@ export default function AnalyticsPage() {
           {/* Compa distribution */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Compa-ratio distribution</h2>
-              <p className="mt-1 text-xs text-slate-500">
+              <h2 className="text-sm font-semibold text-neutral-200">Compa-ratio distribution</h2>
+              <p className="mt-1 text-xs text-neutral-500">
                 Headcount across compa-ratio buckets relative to band midpoint.
               </p>
             </CardHeader>
@@ -373,8 +373,8 @@ export default function AnalyticsPage() {
           {/* Budget trend */}
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Remediation budget trend</h2>
-              <p className="mt-1 text-xs text-slate-500">
+              <h2 className="text-sm font-semibold text-neutral-200">Remediation budget trend</h2>
+              <p className="mt-1 text-xs text-neutral-500">
                 Remediation spend committed over time across scenarios and merit cycles.
               </p>
             </CardHeader>
@@ -395,8 +395,8 @@ export default function AnalyticsPage() {
           <Card>
             <CardHeader className="flex flex-wrap items-center justify-between gap-3">
               <div>
-                <h2 className="text-sm font-semibold text-slate-200">Guardrail rules</h2>
-                <p className="mt-1 text-xs text-slate-500">
+                <h2 className="text-sm font-semibold text-neutral-200">Guardrail rules</h2>
+                <p className="mt-1 text-xs text-neutral-500">
                   Policy thresholds enforced on offers, positioning, and gaps.
                 </p>
               </div>
@@ -426,8 +426,8 @@ export default function AnalyticsPage() {
                   <TBody>
                     {guardrails.map((g) => (
                       <TR key={g.id}>
-                        <TD className="font-medium text-slate-200">{ruleLabel(g.rule_type)}</TD>
-                        <TD className="text-right tabular-nums text-slate-200">{g.threshold}</TD>
+                        <TD className="font-medium text-neutral-200">{ruleLabel(g.rule_type)}</TD>
+                        <TD className="text-right tabular-nums text-neutral-200">{g.threshold}</TD>
                         <TD>
                           <Badge tone={actionTone(g.action)}>{g.action}</Badge>
                         </TD>
@@ -490,7 +490,7 @@ export default function AnalyticsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Rule type
             </label>
             <select
@@ -507,7 +507,7 @@ export default function AnalyticsPage() {
           </div>
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Threshold
               </label>
               <input
@@ -520,7 +520,7 @@ export default function AnalyticsPage() {
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Action
               </label>
               <select
@@ -536,12 +536,12 @@ export default function AnalyticsPage() {
               </select>
             </div>
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-neutral-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm({ ...form, enabled: e.target.checked })}
-              className="accent-violet-500"
+              className="accent-orange-500"
             />
             Enabled
           </label>
@@ -562,10 +562,10 @@ function CompaHistogram({ buckets }: { buckets: CompaBucket[] }) {
         const label = b.label ?? b.bucket ?? b.range ?? (b.min != null ? `${b.min}` : `${i + 1}`)
         // center buckets (compa ~1.0) green, edges amber/rose
         const isCenter = label.includes('0.9') || label.includes('1.0') || label.includes('1.1')
-        const color = isCenter ? 'bg-violet-500' : 'bg-slate-600'
+        const color = isCenter ? 'bg-orange-500' : 'bg-neutral-600'
         return (
           <div key={`${label}-${i}`} className="flex min-w-[44px] flex-1 flex-col items-center gap-1">
-            <span className="text-xs tabular-nums text-slate-400">{count}</span>
+            <span className="text-xs tabular-nums text-neutral-400">{count}</span>
             <div className="flex h-40 w-full items-end">
               <div
                 className={`w-full rounded-t ${color}`}
@@ -573,7 +573,7 @@ function CompaHistogram({ buckets }: { buckets: CompaBucket[] }) {
                 title={`${label}: ${count}`}
               />
             </div>
-            <span className="text-[10px] text-slate-500" style={{ writingMode: 'horizontal-tb' }}>
+            <span className="text-[10px] text-neutral-500" style={{ writingMode: 'horizontal-tb' }}>
               {label}
             </span>
           </div>

@@ -27,17 +27,17 @@ export default function SignIn() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-slate-950 px-4">
+    <main className="flex min-h-screen items-center justify-center bg-neutral-950 px-4">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <Link href="/" className="text-2xl font-black text-violet-400">
+          <Link href="/" className="text-2xl font-black text-orange-400">
             CompBandEquityAuditor
           </Link>
           <h1 className="mt-4 text-2xl font-bold text-white">Sign in to your account</h1>
         </div>
         <form
           onSubmit={handleSubmit}
-          className="space-y-4 rounded-2xl border border-slate-800 bg-slate-900 p-8"
+          className="space-y-4 rounded-2xl border border-neutral-800 bg-neutral-900 p-8"
         >
           {error && (
             <div className="rounded-lg border border-rose-700 bg-rose-900/30 p-3 text-sm text-rose-300">
@@ -45,34 +45,34 @@ export default function SignIn() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Email</label>
+            <label className="mb-1 block text-sm font-medium text-neutral-300">Email</label>
             <input
               name="email"
               type="email"
               required
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white placeholder-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-3 text-white placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
               placeholder="you@example.com"
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-slate-300">Password</label>
+            <label className="mb-1 block text-sm font-medium text-neutral-300">Password</label>
             <input
               name="password"
               type="password"
               required
-              className="w-full rounded-lg border border-slate-700 bg-slate-800 px-4 py-3 text-white focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-3 text-white focus:border-orange-500 focus:outline-none"
             />
           </div>
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-lg bg-violet-600 py-3 font-semibold text-white transition-colors hover:bg-violet-500 disabled:opacity-50"
+            className="w-full rounded-lg bg-orange-600 py-3 font-semibold text-white transition-colors hover:bg-orange-500 disabled:opacity-50"
           >
             {loading ? 'Signing in...' : 'Sign In'}
           </button>
-          <p className="text-center text-sm text-slate-400">
+          <p className="text-center text-sm text-neutral-400">
             No account?{' '}
-            <Link href="/auth/sign-up" className="text-violet-400 hover:text-violet-300">
+            <Link href="/auth/sign-up" className="text-orange-400 hover:text-orange-300">
               Sign up
             </Link>
           </p>

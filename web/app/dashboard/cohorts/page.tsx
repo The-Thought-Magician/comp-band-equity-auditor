@@ -256,8 +256,8 @@ export default function CohortsPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Cohorts</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Cohorts</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Define reusable employee segments for gap analysis, scenarios and reporting.
           </p>
         </div>
@@ -286,12 +286,12 @@ export default function CohortsPage() {
         <div className="lg:col-span-3">
           <Card>
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <h2 className="text-sm font-semibold text-slate-200">All cohorts</h2>
+              <h2 className="text-sm font-semibold text-neutral-200">All cohorts</h2>
               <input
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 placeholder="Search cohorts…"
-                className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+                className="w-48 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
               />
             </CardHeader>
             <CardBody className="p-0">
@@ -331,17 +331,17 @@ export default function CohortsPage() {
                   </THead>
                   <TBody>
                     {filtered.map((c) => (
-                      <TR key={c.id} className={previewId === c.id ? 'bg-violet-500/5' : ''}>
+                      <TR key={c.id} className={previewId === c.id ? 'bg-orange-500/5' : ''}>
                         <TD>
                           <button
                             onClick={() => refreshPreview(c.id)}
-                            className="font-medium text-violet-300 hover:text-violet-200"
+                            className="font-medium text-orange-300 hover:text-orange-200"
                           >
                             {c.name}
                           </button>
                         </TD>
                         <TD className="max-w-xs">
-                          <span className="block truncate text-xs text-slate-400" title={describeDefinition(c.definition)}>
+                          <span className="block truncate text-xs text-neutral-400" title={describeDefinition(c.definition)}>
                             {describeDefinition(c.definition)}
                           </span>
                         </TD>
@@ -376,14 +376,14 @@ export default function CohortsPage() {
         <div className="lg:col-span-2">
           <Card>
             <CardHeader>
-              <h2 className="text-sm font-semibold text-slate-200">Membership preview</h2>
-              <p className="mt-0.5 text-xs text-slate-500">
+              <h2 className="text-sm font-semibold text-neutral-200">Membership preview</h2>
+              <p className="mt-0.5 text-xs text-neutral-500">
                 {preview ? `“${preview.name}”` : 'Select a cohort to preview who it includes.'}
               </p>
             </CardHeader>
             <CardBody>
               {!previewId ? (
-                <p className="py-8 text-center text-sm text-slate-500">No cohort selected.</p>
+                <p className="py-8 text-center text-sm text-neutral-500">No cohort selected.</p>
               ) : previewLoading ? (
                 <div className="flex items-center justify-center py-10">
                   <Spinner label="Computing membership…" />
@@ -392,9 +392,9 @@ export default function CohortsPage() {
                 <p className="py-6 text-sm text-rose-300">{previewError}</p>
               ) : preview ? (
                 <div className="space-y-4">
-                  <div className="rounded-lg border border-slate-800 bg-slate-950/50 px-4 py-3">
-                    <div className="text-xs font-medium uppercase tracking-wide text-slate-400">Members</div>
-                    <div className="mt-1 text-3xl font-semibold text-violet-300">{preview.size ?? 0}</div>
+                  <div className="rounded-lg border border-neutral-800 bg-neutral-950/50 px-4 py-3">
+                    <div className="text-xs font-medium uppercase tracking-wide text-neutral-400">Members</div>
+                    <div className="mt-1 text-3xl font-semibold text-orange-300">{preview.size ?? 0}</div>
                   </div>
                   {(preview.sample?.length ?? 0) === 0 ? (
                     <EmptyState
@@ -403,7 +403,7 @@ export default function CohortsPage() {
                     />
                   ) : (
                     <div>
-                      <div className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-400">
+                      <div className="mb-2 text-xs font-medium uppercase tracking-wide text-neutral-400">
                         Sample ({preview.sample!.length})
                       </div>
                       <Table>
@@ -458,17 +458,17 @@ export default function CohortsPage() {
           )}
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="e.g. Senior engineers in EMEA"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Match</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">Match</label>
             <div className="flex gap-2">
               {(['all', 'any'] as const).map((m) => (
                 <button
@@ -477,8 +477,8 @@ export default function CohortsPage() {
                   onClick={() => setMatch(m)}
                   className={`rounded-lg border px-3 py-1.5 text-sm transition-colors ${
                     match === m
-                      ? 'border-violet-500/40 bg-violet-500/20 text-violet-200'
-                      : 'border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200'
+                      ? 'border-orange-500/40 bg-orange-500/20 text-orange-200'
+                      : 'border-neutral-700 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
                   }`}
                 >
                   {m === 'all' ? 'Match ALL filters' : 'Match ANY filter'}
@@ -489,7 +489,7 @@ export default function CohortsPage() {
 
           <div>
             <div className="mb-2 flex items-center justify-between">
-              <label className="block text-xs font-medium uppercase tracking-wide text-slate-400">Filters</label>
+              <label className="block text-xs font-medium uppercase tracking-wide text-neutral-400">Filters</label>
               <Button type="button" variant="ghost" className="px-2 py-1" onClick={addFilter}>
                 + Add filter
               </Button>
@@ -500,7 +500,7 @@ export default function CohortsPage() {
                   <select
                     value={f.field}
                     onChange={(e) => updateFilter(idx, { field: e.target.value })}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                    className="rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
                   >
                     {FIELDS.map((fl) => (
                       <option key={fl.key} value={fl.key}>
@@ -511,7 +511,7 @@ export default function CohortsPage() {
                   <select
                     value={f.op}
                     onChange={(e) => updateFilter(idx, { op: e.target.value })}
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                    className="rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
                   >
                     {OPS.map((o) => (
                       <option key={o.key} value={o.key}>
@@ -523,13 +523,13 @@ export default function CohortsPage() {
                     value={f.value}
                     onChange={(e) => updateFilter(idx, { value: e.target.value })}
                     placeholder="value"
-                    className="rounded-lg border border-slate-700 bg-slate-950 px-2 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+                    className="rounded-lg border border-neutral-700 bg-neutral-950 px-2 py-1.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
                   />
                   <button
                     type="button"
                     onClick={() => removeFilter(idx)}
                     disabled={filters.length === 1}
-                    className="rounded-lg px-2 py-1.5 text-slate-500 hover:bg-slate-800 hover:text-rose-300 disabled:opacity-30"
+                    className="rounded-lg px-2 py-1.5 text-neutral-500 hover:bg-neutral-800 hover:text-rose-300 disabled:opacity-30"
                     aria-label="Remove filter"
                   >
                     ✕
@@ -557,7 +557,7 @@ export default function CohortsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-neutral-300">
           Delete cohort {pendingDelete ? `“${pendingDelete.name}”` : ''}? This cannot be undone.
         </p>
       </Modal>

@@ -250,8 +250,8 @@ export default function AuditLogPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Audit Log</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Audit Log</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Every workspace mutation, attributed and timestamped. Save filter views you check often.
           </p>
         </div>
@@ -281,24 +281,24 @@ export default function AuditLogPage() {
       {savedFilters.length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Saved views</h2>
+            <h2 className="text-sm font-semibold text-neutral-200">Saved views</h2>
           </CardHeader>
           <CardBody className="flex flex-wrap gap-2">
             {savedFilters.map((f) => (
               <div
                 key={f.id}
-                className="flex items-center gap-1 rounded-full border border-slate-700 bg-slate-900 py-0.5 pl-3 pr-1 text-sm"
+                className="flex items-center gap-1 rounded-full border border-neutral-700 bg-neutral-900 py-0.5 pl-3 pr-1 text-sm"
               >
                 <button
                   onClick={() => applySaved(f)}
-                  className="text-slate-200 hover:text-violet-300"
+                  className="text-neutral-200 hover:text-orange-300"
                   title="Apply this view"
                 >
                   {f.name}
                 </button>
                 <button
                   onClick={() => setPendingDelete(f)}
-                  className="rounded-full px-1.5 text-slate-500 hover:text-rose-300"
+                  className="rounded-full px-1.5 text-neutral-500 hover:text-rose-300"
                   aria-label={`Delete saved view ${f.name}`}
                   disabled={deletingId === f.id}
                 >
@@ -312,18 +312,18 @@ export default function AuditLogPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">Activity</h2>
+          <h2 className="text-sm font-semibold text-neutral-200">Activity</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search actions, targets, actors…"
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-56 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
             <select
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All actions</option>
               {actions.map((a) => (
@@ -335,7 +335,7 @@ export default function AuditLogPage() {
             <select
               value={targetFilter}
               onChange={(e) => setTargetFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">All targets</option>
               {targetTypes.map((t) => (
@@ -396,25 +396,25 @@ export default function AuditLogPage() {
                     const hasMeta = e.metadata && Object.keys(e.metadata).length > 0
                     return (
                       <TR key={e.id}>
-                        <TD className="whitespace-nowrap text-slate-400">{fmtDate(e.created_at)}</TD>
+                        <TD className="whitespace-nowrap text-neutral-400">{fmtDate(e.created_at)}</TD>
                         <TD>
                           <Badge tone={actionTone(e.action)}>{e.action}</Badge>
                         </TD>
                         <TD>
                           {e.target_type ? (
-                            <span className="text-slate-200">
+                            <span className="text-neutral-200">
                               {e.target_type}
                               {e.target_id ? (
-                                <span className="ml-1 font-mono text-xs text-slate-500">
+                                <span className="ml-1 font-mono text-xs text-neutral-500">
                                   {e.target_id.slice(0, 8)}
                                 </span>
                               ) : null}
                             </span>
                           ) : (
-                            <span className="text-slate-500">—</span>
+                            <span className="text-neutral-500">—</span>
                           )}
                         </TD>
-                        <TD className="font-mono text-xs text-slate-400">
+                        <TD className="font-mono text-xs text-neutral-400">
                           {e.actor_id ? e.actor_id.slice(0, 12) : 'system'}
                         </TD>
                         <TD className="text-right">
@@ -423,7 +423,7 @@ export default function AuditLogPage() {
                               View
                             </Button>
                           ) : (
-                            <span className="text-slate-600">—</span>
+                            <span className="text-neutral-600">—</span>
                           )}
                         </TD>
                       </TR>
@@ -432,7 +432,7 @@ export default function AuditLogPage() {
                 </TBody>
               </Table>
               {totalPages > 1 && (
-                <div className="flex items-center justify-between px-5 py-3 text-sm text-slate-400">
+                <div className="flex items-center justify-between px-5 py-3 text-sm text-neutral-400">
                   <span>
                     Showing {pageClamped * PAGE_SIZE + 1}–
                     {Math.min((pageClamped + 1) * PAGE_SIZE, filtered.length)} of {filtered.length}
@@ -488,7 +488,7 @@ export default function AuditLogPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               View name
             </label>
             <input
@@ -496,11 +496,11 @@ export default function AuditLogPage() {
               onChange={(e) => setFilterName(e.target.value)}
               placeholder="e.g. Band edits this quarter"
               autoFocus
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </div>
-          <div className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2 text-xs text-slate-400">
-            <div className="mb-1 font-medium uppercase tracking-wide text-slate-500">Captured filters</div>
+          <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 px-3 py-2 text-xs text-neutral-400">
+            <div className="mb-1 font-medium uppercase tracking-wide text-neutral-500">Captured filters</div>
             <ul className="space-y-0.5">
               <li>Action: {actionFilter || 'any'}</li>
               <li>Target: {targetFilter || 'any'}</li>
@@ -526,8 +526,8 @@ export default function AuditLogPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
-          Delete saved view <span className="font-medium text-slate-100">{pendingDelete?.name}</span>? This
+        <p className="text-sm text-neutral-300">
+          Delete saved view <span className="font-medium text-neutral-100">{pendingDelete?.name}</span>? This
           only removes the saved filter, not any log entries.
         </p>
       </Modal>
@@ -537,23 +537,23 @@ export default function AuditLogPage() {
         {inspect && (
           <div className="space-y-3 text-sm">
             <div className="grid grid-cols-3 gap-2">
-              <span className="text-slate-500">Action</span>
-              <span className="col-span-2 text-slate-200">{inspect.action}</span>
-              <span className="text-slate-500">Target</span>
-              <span className="col-span-2 text-slate-200">
+              <span className="text-neutral-500">Action</span>
+              <span className="col-span-2 text-neutral-200">{inspect.action}</span>
+              <span className="text-neutral-500">Target</span>
+              <span className="col-span-2 text-neutral-200">
                 {inspect.target_type ?? '—'}
                 {inspect.target_id ? ` · ${inspect.target_id}` : ''}
               </span>
-              <span className="text-slate-500">Actor</span>
-              <span className="col-span-2 font-mono text-xs text-slate-300">
+              <span className="text-neutral-500">Actor</span>
+              <span className="col-span-2 font-mono text-xs text-neutral-300">
                 {inspect.actor_id ?? 'system'}
               </span>
-              <span className="text-slate-500">When</span>
-              <span className="col-span-2 text-slate-200">{fmtDate(inspect.created_at)}</span>
+              <span className="text-neutral-500">When</span>
+              <span className="col-span-2 text-neutral-200">{fmtDate(inspect.created_at)}</span>
             </div>
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Metadata</div>
-              <pre className="max-h-72 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 font-mono text-xs text-slate-300">
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-neutral-500">Metadata</div>
+              <pre className="max-h-72 overflow-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 font-mono text-xs text-neutral-300">
                 {JSON.stringify(inspect.metadata ?? {}, null, 2)}
               </pre>
             </div>

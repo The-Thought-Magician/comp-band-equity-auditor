@@ -184,7 +184,7 @@ export default function ScenarioDetailPage() {
   if (error || !scenario) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/scenarios" className="text-sm text-violet-300 hover:text-violet-200">
+        <Link href="/dashboard/scenarios" className="text-sm text-orange-300 hover:text-orange-200">
           ← Back to scenarios
         </Link>
         <Card>
@@ -201,18 +201,18 @@ export default function ScenarioDetailPage() {
       <div>
         <Link
           href="/dashboard/scenarios"
-          className="text-sm text-violet-300 hover:text-violet-200"
+          className="text-sm text-orange-300 hover:text-orange-200"
         >
           ← Back to scenarios
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-semibold text-slate-100">{scenario.name}</h1>
+          <h1 className="text-2xl font-semibold text-neutral-100">{scenario.name}</h1>
           <Badge tone="violet">{scenario.target_type}</Badge>
           <Badge tone={scenario.status === 'applied' ? 'green' : 'neutral'}>
             {scenario.status}
           </Badge>
         </div>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-neutral-500">
           Created {new Date(scenario.created_at).toLocaleDateString()}
         </p>
       </div>
@@ -239,7 +239,7 @@ export default function ScenarioDetailPage() {
       {scenario.constraints && Object.keys(scenario.constraints).length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Constraints</h2>
+            <h2 className="text-sm font-semibold text-neutral-200">Constraints</h2>
           </CardHeader>
           <CardBody className="flex flex-wrap gap-2">
             {Object.entries(scenario.constraints).map(([k, v]) => (
@@ -253,8 +253,8 @@ export default function ScenarioDetailPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Budget vs residual gap sensitivity</h2>
-          <p className="mt-1 text-xs text-slate-500">
+          <h2 className="text-sm font-semibold text-neutral-200">Budget vs residual gap sensitivity</h2>
+          <p className="mt-1 text-xs text-neutral-500">
             How residual unexplained gap shrinks as you spend more on this scenario.
           </p>
         </CardHeader>
@@ -266,7 +266,7 @@ export default function ScenarioDetailPage() {
           ) : sensError ? (
             <p className="text-sm text-rose-300">{sensError}</p>
           ) : sensitivity.length === 0 ? (
-            <p className="text-sm text-slate-500">No sensitivity data available.</p>
+            <p className="text-sm text-neutral-500">No sensitivity data available.</p>
           ) : (
             <SensitivityChart points={sensitivity} />
           )}
@@ -276,8 +276,8 @@ export default function ScenarioDetailPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-semibold text-slate-200">Line-item adjustments</h2>
-            <p className="mt-1 text-xs text-slate-500">{adjustments.length} proposed changes</p>
+            <h2 className="text-sm font-semibold text-neutral-200">Line-item adjustments</h2>
+            <p className="mt-1 text-xs text-neutral-500">{adjustments.length} proposed changes</p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
             <input
@@ -295,12 +295,12 @@ export default function ScenarioDetailPage() {
               <option value="current">Sort: current salary</option>
               <option value="name">Sort: name</option>
             </select>
-            <label className="flex items-center gap-2 text-xs text-slate-400">
+            <label className="flex items-center gap-2 text-xs text-neutral-400">
               <input
                 type="checkbox"
                 checked={onlyIncreases}
                 onChange={(e) => setOnlyIncreases(e.target.checked)}
-                className="accent-violet-500"
+                className="accent-orange-500"
               />
               Only raises
             </label>
@@ -338,12 +338,12 @@ export default function ScenarioDetailPage() {
                     : 0
                   return (
                     <TR key={a.id}>
-                      <TD className="font-medium text-slate-200">
+                      <TD className="font-medium text-neutral-200">
                         {a.employee_name ?? a.employee_ref ?? a.employee_id.slice(0, 8)}
                       </TD>
-                      <TD className="text-slate-400">{a.level ?? '—'}</TD>
+                      <TD className="text-neutral-400">{a.level ?? '—'}</TD>
                       <TD className="text-right tabular-nums">{dollars(a.current_salary)}</TD>
-                      <TD className="text-right tabular-nums text-slate-100">
+                      <TD className="text-right tabular-nums text-neutral-100">
                         {dollars(a.proposed_salary)}
                       </TD>
                       <TD className="text-right">
@@ -351,18 +351,18 @@ export default function ScenarioDetailPage() {
                           className={
                             (a.delta_cents ?? 0) > 0
                               ? 'tabular-nums text-emerald-300'
-                              : 'tabular-nums text-slate-500'
+                              : 'tabular-nums text-neutral-500'
                           }
                         >
                           {money(a.delta_cents)}
                           {(a.delta_cents ?? 0) > 0 && (
-                            <span className="ml-1 text-xs text-slate-500">
+                            <span className="ml-1 text-xs text-neutral-500">
                               (+{deltaPct.toFixed(1)}%)
                             </span>
                           )}
                         </span>
                       </TD>
-                      <TD className="max-w-xs text-xs text-slate-400">{a.rationale ?? '—'}</TD>
+                      <TD className="max-w-xs text-xs text-neutral-400">{a.rationale ?? '—'}</TD>
                     </TR>
                   )
                 })}
@@ -451,7 +451,7 @@ function SensitivityChart({ points }: { points: SensitivityPoint[] }) {
           )
         })}
       </svg>
-      <div className="mt-2 flex items-center justify-between text-xs text-slate-500">
+      <div className="mt-2 flex items-center justify-between text-xs text-neutral-500">
         <span>Budget spent →</span>
         <span>↑ residual unexplained gap</span>
       </div>
@@ -460,4 +460,4 @@ function SensitivityChart({ points }: { points: SensitivityPoint[] }) {
 }
 
 const inputCls =
-  'rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none'
+  'rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none'

@@ -189,8 +189,8 @@ export default function MeritCyclesPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Merit Cycles</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Merit Cycles</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Model annual increase budgets, compute per-employee allocations, and lock a cycle for payout.
           </p>
         </div>
@@ -212,12 +212,12 @@ export default function MeritCyclesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search cycles..."
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none sm:max-w-xs"
+            className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none sm:max-w-xs"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+            className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
           >
             <option value="all">All statuses</option>
             <option value="draft">Draft</option>
@@ -226,7 +226,7 @@ export default function MeritCyclesPage() {
           <select
             value={modelFilter}
             onChange={(e) => setModelFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+            className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
           >
             <option value="all">All models</option>
             {MODELS.map((m) => (
@@ -235,7 +235,7 @@ export default function MeritCyclesPage() {
               </option>
             ))}
           </select>
-          <div className="text-xs text-slate-500 sm:ml-auto">
+          <div className="text-xs text-neutral-500 sm:ml-auto">
             {filtered.length} of {cycles.length}
           </div>
         </CardBody>
@@ -298,20 +298,20 @@ export default function MeritCyclesPage() {
                 <TD>
                   <Link
                     href={`/dashboard/merit/${c.id}`}
-                    className="font-medium text-violet-300 hover:text-violet-200 hover:underline"
+                    className="font-medium text-orange-300 hover:text-orange-200 hover:underline"
                   >
                     {c.name}
                   </Link>
                 </TD>
                 <TD>
-                  <span className="text-slate-300">{modelLabel(c.model)}</span>
+                  <span className="text-neutral-300">{modelLabel(c.model)}</span>
                 </TD>
-                <TD className="text-right font-mono text-slate-200">{fmtMoney(c.budget_cents)}</TD>
+                <TD className="text-right font-mono text-neutral-200">{fmtMoney(c.budget_cents)}</TD>
                 <TD>
                   <Badge tone={statusTone(c.status)}>{c.status}</Badge>
                 </TD>
                 <TD>
-                  <span className="text-slate-400">
+                  <span className="text-neutral-400">
                     {c.created_at ? new Date(c.created_at).toLocaleDateString() : '—'}
                   </span>
                 </TD>
@@ -355,25 +355,25 @@ export default function MeritCyclesPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Cycle name
             </label>
             <input
               value={form.name}
               onChange={(e) => setForm({ ...form, name: e.target.value })}
               placeholder="FY26 Annual Merit"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Dataset
               </label>
               <select
                 value={form.dataset_id}
                 onChange={(e) => setForm({ ...form, dataset_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 <option value="">Select dataset</option>
                 {datasets.map((d) => (
@@ -384,13 +384,13 @@ export default function MeritCyclesPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Band set
               </label>
               <select
                 value={form.band_set_id}
                 onChange={(e) => setForm({ ...form, band_set_id: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 <option value="">Select band set</option>
                 {bandSets.map((b) => (
@@ -403,7 +403,7 @@ export default function MeritCyclesPage() {
           </div>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Budget (USD)
               </label>
               <input
@@ -413,17 +413,17 @@ export default function MeritCyclesPage() {
                 value={form.budget}
                 onChange={(e) => setForm({ ...form, budget: e.target.value })}
                 placeholder="500000"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Allocation model
               </label>
               <select
                 value={form.model}
                 onChange={(e) => setForm({ ...form, model: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {MODELS.map((m) => (
                   <option key={m.value} value={m.value}>

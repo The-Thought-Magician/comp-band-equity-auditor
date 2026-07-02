@@ -245,7 +245,7 @@ export default function MeritCycleDetailPage() {
   if (error || !cycle) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/merit" className="text-sm text-violet-300 hover:underline">
+        <Link href="/dashboard/merit" className="text-sm text-orange-300 hover:underline">
           ← Back to cycles
         </Link>
         <Card>
@@ -268,12 +268,12 @@ export default function MeritCycleDetailPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-col gap-3">
-        <Link href="/dashboard/merit" className="text-sm text-violet-300 hover:underline">
+        <Link href="/dashboard/merit" className="text-sm text-orange-300 hover:underline">
           ← Back to cycles
         </Link>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3">
-            <h1 className="text-2xl font-semibold text-slate-100">{cycle.name}</h1>
+            <h1 className="text-2xl font-semibold text-neutral-100">{cycle.name}</h1>
             <Badge tone={locked ? 'green' : 'amber'}>{cycle.status}</Badge>
           </div>
           <div className="flex gap-2">
@@ -307,20 +307,20 @@ export default function MeritCycleDetailPage() {
       <Card>
         <CardHeader>
           <div className="flex items-center justify-between">
-            <h2 className="text-sm font-semibold text-slate-200">Budget utilization</h2>
-            <span className="text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-neutral-200">Budget utilization</h2>
+            <span className="text-xs text-neutral-500">
               {fmtMoney(totals.totalFinal)} / {fmtMoney(totals.budget)}
             </span>
           </div>
         </CardHeader>
         <CardBody>
-          <div className="h-3 w-full overflow-hidden rounded-full bg-slate-800">
+          <div className="h-3 w-full overflow-hidden rounded-full bg-neutral-800">
             <div
-              className={`h-full rounded-full ${totals.util > 100 ? 'bg-rose-500' : 'bg-violet-500'}`}
+              className={`h-full rounded-full ${totals.util > 100 ? 'bg-rose-500' : 'bg-orange-500'}`}
               style={{ width: `${Math.min(100, totals.util)}%` }}
             />
           </div>
-          <div className="mt-2 flex justify-between text-xs text-slate-500">
+          <div className="mt-2 flex justify-between text-xs text-neutral-500">
             <span>{fmtPct(totals.util)} consumed</span>
             <span>
               {totals.util > 100 ? 'Over budget' : `${fmtMoney(totals.budget - totals.totalFinal)} remaining`}
@@ -335,28 +335,28 @@ export default function MeritCycleDetailPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search employees..."
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none sm:max-w-xs"
+            className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none sm:max-w-xs"
           />
           <select
             value={sortKey}
             onChange={(e) => setSortKey(e.target.value as typeof sortKey)}
-            className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+            className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
           >
             <option value="final">Sort: Final increase</option>
             <option value="pct">Sort: Increase %</option>
             <option value="salary">Sort: Current salary</option>
             <option value="name">Sort: Name</option>
           </select>
-          <label className="inline-flex items-center gap-2 text-sm text-slate-300">
+          <label className="inline-flex items-center gap-2 text-sm text-neutral-300">
             <input
               type="checkbox"
               checked={onlyOverrides}
               onChange={(e) => setOnlyOverrides(e.target.checked)}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-950 accent-violet-500"
+              className="h-4 w-4 rounded border-neutral-600 bg-neutral-950 accent-orange-500"
             />
             Overrides only
           </label>
-          <div className="text-xs text-slate-500 sm:ml-auto">
+          <div className="text-xs text-neutral-500 sm:ml-auto">
             {filtered.length} of {allocations.length}
           </div>
         </CardBody>
@@ -389,27 +389,27 @@ export default function MeritCycleDetailPage() {
               return (
                 <TR key={a.id}>
                   <TD>
-                    <div className="font-medium text-slate-200">{empName(a)}</div>
-                    {a.role_family && <div className="text-xs text-slate-500">{a.role_family}</div>}
+                    <div className="font-medium text-neutral-200">{empName(a)}</div>
+                    {a.role_family && <div className="text-xs text-neutral-500">{a.role_family}</div>}
                   </TD>
                   <TD>{a.level ?? '—'}</TD>
                   <TD className="text-right font-mono">{fmtMoney((a.current_salary ?? 0) * 100)}</TD>
-                  <TD className="text-right font-mono text-slate-400">
+                  <TD className="text-right font-mono text-neutral-400">
                     {fmtMoney(a.recommended_increase_cents)}
                   </TD>
                   <TD className="text-right font-mono">
-                    <span className={overridden ? 'text-amber-300' : 'text-slate-200'}>
+                    <span className={overridden ? 'text-amber-300' : 'text-neutral-200'}>
                       {fmtMoney(allocFinal(a))}
                     </span>
                     {overridden && (
                       <div className="text-[10px] uppercase tracking-wide text-amber-400/80">override</div>
                     )}
                   </TD>
-                  <TD className="text-right font-mono text-slate-300">{fmtPct(pct)}</TD>
+                  <TD className="text-right font-mono text-neutral-300">{fmtPct(pct)}</TD>
                   <TD>
-                    <div className="h-2 w-24 overflow-hidden rounded-full bg-slate-800">
+                    <div className="h-2 w-24 overflow-hidden rounded-full bg-neutral-800">
                       <div
-                        className={`h-full rounded-full ${overridden ? 'bg-amber-400' : 'bg-violet-500'}`}
+                        className={`h-full rounded-full ${overridden ? 'bg-amber-400' : 'bg-orange-500'}`}
                         style={{ width: `${Math.max(2, (allocFinal(a) / maxFinal) * 100)}%` }}
                       />
                     </div>
@@ -451,17 +451,17 @@ export default function MeritCycleDetailPage() {
         {editing && (
           <div className="space-y-4">
             <div className="grid grid-cols-2 gap-3 text-sm">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2">
-                <div className="text-xs uppercase tracking-wide text-slate-500">Current salary</div>
-                <div className="font-mono text-slate-200">{fmtMoney((editing.current_salary ?? 0) * 100)}</div>
+              <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 px-3 py-2">
+                <div className="text-xs uppercase tracking-wide text-neutral-500">Current salary</div>
+                <div className="font-mono text-neutral-200">{fmtMoney((editing.current_salary ?? 0) * 100)}</div>
               </div>
-              <div className="rounded-lg border border-slate-800 bg-slate-950/60 px-3 py-2">
-                <div className="text-xs uppercase tracking-wide text-slate-500">Recommended</div>
-                <div className="font-mono text-slate-200">{fmtMoney(editing.recommended_increase_cents)}</div>
+              <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 px-3 py-2">
+                <div className="text-xs uppercase tracking-wide text-neutral-500">Recommended</div>
+                <div className="font-mono text-neutral-200">{fmtMoney(editing.recommended_increase_cents)}</div>
               </div>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Final increase (USD)
               </label>
               <input
@@ -470,11 +470,11 @@ export default function MeritCycleDetailPage() {
                 step={100}
                 value={editVal}
                 onChange={(e) => setEditVal(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
                 Override reason
               </label>
               <textarea
@@ -482,7 +482,7 @@ export default function MeritCycleDetailPage() {
                 onChange={(e) => setEditReason(e.target.value)}
                 rows={3}
                 placeholder="Why is this allocation being adjusted from the model recommendation?"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none"
               />
             </div>
             {overrideError && <p className="text-sm text-rose-300">{overrideError}</p>}
@@ -514,7 +514,7 @@ export default function MeritCycleDetailPage() {
             </Button>
           </div>
         ) : compareRows.length === 0 ? (
-          <p className="py-6 text-center text-sm text-slate-500">No comparison data returned.</p>
+          <p className="py-6 text-center text-sm text-neutral-500">No comparison data returned.</p>
         ) : (
           <Table>
             <THead>
@@ -529,10 +529,10 @@ export default function MeritCycleDetailPage() {
               {compareRows.map((r, i) => (
                 <TR key={`${r.model}-${i}`}>
                   <TD>
-                    <span className={r.model === cycle.model ? 'font-semibold text-violet-300' : 'text-slate-200'}>
+                    <span className={r.model === cycle.model ? 'font-semibold text-orange-300' : 'text-neutral-200'}>
                       {r.model}
                       {r.model === cycle.model && (
-                        <span className="ml-2 text-[10px] uppercase text-violet-400">active</span>
+                        <span className="ml-2 text-[10px] uppercase text-orange-400">active</span>
                       )}
                     </span>
                   </TD>

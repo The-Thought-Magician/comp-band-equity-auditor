@@ -96,15 +96,15 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
   if (!ready) return <FullPageSpinner />
 
   return (
-    <div className="flex min-h-screen bg-slate-950 text-slate-100">
+    <div className="flex min-h-screen bg-neutral-950 text-neutral-100">
       {/* Sidebar */}
       <aside
-        className={`fixed inset-y-0 left-0 z-40 w-64 transform border-r border-slate-800 bg-slate-900/80 backdrop-blur transition-transform lg:static lg:translate-x-0 ${
-          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+        className={`fixed inset-y-0 left-0 z-40 w-64 transform border-r border-neutral-800 bg-neutral-900/80 backdrop-blur transition-transform lg:static lg:tranneutral-x-0 ${
+          mobileOpen ? 'tranneutral-x-0' : '-tranneutral-x-full'
         }`}
       >
-        <div className="flex h-16 items-center gap-2 border-b border-slate-800 px-5">
-          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-violet-600 text-sm font-black text-white">
+        <div className="flex h-16 items-center gap-2 border-b border-neutral-800 px-5">
+          <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-orange-600 text-sm font-black text-white">
             C
           </span>
           <span className="text-sm font-bold tracking-tight text-white">CompBandEquityAuditor</span>
@@ -112,7 +112,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         <nav className="h-[calc(100vh-4rem)] overflow-y-auto px-3 py-4">
           {SECTIONS.map((section) => (
             <div key={section.title} className="mb-5">
-              <div className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-widest text-slate-500">
+              <div className="px-2 pb-1 text-[10px] font-semibold uppercase tracking-widest text-neutral-500">
                 {section.title}
               </div>
               <div className="space-y-0.5">
@@ -125,8 +125,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
                       onClick={() => setMobileOpen(false)}
                       className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
                         active
-                          ? 'bg-violet-600/15 font-medium text-violet-200'
-                          : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                          ? 'bg-orange-600/15 font-medium text-orange-200'
+                          : 'text-neutral-400 hover:bg-neutral-800 hover:text-white'
                       }`}
                     >
                       {item.label}
@@ -141,7 +141,7 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {mobileOpen && (
         <div
-          className="fixed inset-0 z-30 bg-slate-950/60 lg:hidden"
+          className="fixed inset-0 z-30 bg-neutral-950/60 lg:hidden"
           onClick={() => setMobileOpen(false)}
           aria-hidden
         />
@@ -149,20 +149,20 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
       {/* Main */}
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-slate-800 bg-slate-950/80 px-4 backdrop-blur lg:px-6">
+        <header className="sticky top-0 z-20 flex h-16 items-center justify-between border-b border-neutral-800 bg-neutral-950/80 px-4 backdrop-blur lg:px-6">
           <div className="flex items-center gap-3">
             <button
-              className="rounded-lg p-2 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden"
+              className="rounded-lg p-2 text-neutral-400 hover:bg-neutral-800 hover:text-white lg:hidden"
               onClick={() => setMobileOpen((v) => !v)}
               aria-label="Toggle navigation"
             >
               ☰
             </button>
-            <span className="truncate text-sm font-medium text-slate-300">{workspaceName}</span>
+            <span className="truncate text-sm font-medium text-neutral-300">{workspaceName}</span>
           </div>
           <button
             onClick={signOut}
-            className="rounded-lg border border-slate-700 px-3 py-1.5 text-sm text-slate-300 transition-colors hover:bg-slate-800 hover:text-white"
+            className="rounded-lg border border-neutral-700 px-3 py-1.5 text-sm text-neutral-300 transition-colors hover:bg-neutral-800 hover:text-white"
           >
             Sign out
           </button>

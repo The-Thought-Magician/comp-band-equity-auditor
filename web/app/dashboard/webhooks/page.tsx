@@ -41,7 +41,7 @@ const EVENT_TYPES = [
 ]
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none'
+  'w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none'
 
 function deliveryTone(status: string, code: number | null): 'green' | 'rose' | 'amber' | 'neutral' {
   const s = (status || '').toLowerCase()
@@ -212,8 +212,8 @@ export default function WebhooksPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Webhooks</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Webhooks</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Register outbound endpoints and inspect delivery history for workspace events.
           </p>
         </div>
@@ -231,7 +231,7 @@ export default function WebhooksPage() {
       {/* Registry */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Registry</h2>
+          <h2 className="text-sm font-semibold text-neutral-200">Registry</h2>
         </CardHeader>
         <CardBody className="p-0">
           {loading ? (
@@ -268,10 +268,10 @@ export default function WebhooksPage() {
                 {webhooks.map((w) => (
                   <TR
                     key={w.id}
-                    className={selected?.id === w.id ? 'bg-violet-500/5' : ''}
+                    className={selected?.id === w.id ? 'bg-orange-500/5' : ''}
                   >
                     <TD className="max-w-xs">
-                      <span className="break-all font-mono text-xs text-slate-200">{w.url}</span>
+                      <span className="break-all font-mono text-xs text-neutral-200">{w.url}</span>
                     </TD>
                     <TD>
                       <div className="flex flex-wrap gap-1">
@@ -339,14 +339,14 @@ export default function WebhooksPage() {
         <Card>
           <CardHeader className="flex flex-wrap items-center justify-between gap-3">
             <div>
-              <h2 className="text-sm font-semibold text-slate-200">Delivery log</h2>
-              <p className="mt-1 break-all text-xs text-slate-500">{selected.url}</p>
+              <h2 className="text-sm font-semibold text-neutral-200">Delivery log</h2>
+              <p className="mt-1 break-all text-xs text-neutral-500">{selected.url}</p>
             </div>
             <div className="flex items-center gap-2">
               <select
                 value={statusFilter}
                 onChange={(e) => setStatusFilter(e.target.value)}
-                className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 <option value="all">All statuses</option>
                 <option value="green">Success</option>
@@ -409,14 +409,14 @@ export default function WebhooksPage() {
                 <TBody>
                   {filteredDeliveries.map((d) => (
                     <TR key={d.id}>
-                      <TD className="font-mono text-xs text-slate-200">{d.event}</TD>
+                      <TD className="font-mono text-xs text-neutral-200">{d.event}</TD>
                       <TD>
                         <Badge tone={deliveryTone(d.status, d.response_code)}>{d.status}</Badge>
                       </TD>
-                      <TD className="text-right tabular-nums text-slate-300">
+                      <TD className="text-right tabular-nums text-neutral-300">
                         {d.response_code ?? '—'}
                       </TD>
-                      <TD className="text-slate-400">{new Date(d.created_at).toLocaleString()}</TD>
+                      <TD className="text-neutral-400">{new Date(d.created_at).toLocaleString()}</TD>
                     </TR>
                   ))}
                 </TBody>
@@ -443,7 +443,7 @@ export default function WebhooksPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Endpoint URL
             </label>
             <input
@@ -454,20 +454,20 @@ export default function WebhooksPage() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Events
             </label>
             <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
               {EVENT_TYPES.map((ev) => (
                 <label
                   key={ev}
-                  className="flex items-center gap-2 rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-slate-300"
+                  className="flex items-center gap-2 rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-xs text-neutral-300"
                 >
                   <input
                     type="checkbox"
                     checked={form.events.includes(ev)}
                     onChange={() => toggleEvent(ev)}
-                    className="accent-violet-500"
+                    className="accent-orange-500"
                   />
                   {ev}
                 </label>
@@ -475,7 +475,7 @@ export default function WebhooksPage() {
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Signing secret (optional)
             </label>
             <input
@@ -485,12 +485,12 @@ export default function WebhooksPage() {
               className={inputCls}
             />
           </div>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-neutral-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm({ ...form, enabled: e.target.checked })}
-              className="accent-violet-500"
+              className="accent-orange-500"
             />
             Enabled
           </label>

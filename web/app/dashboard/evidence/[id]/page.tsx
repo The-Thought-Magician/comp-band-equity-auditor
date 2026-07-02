@@ -38,7 +38,7 @@ interface Attestation {
 }
 
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-violet-500 focus:outline-none'
+  'w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-600 focus:border-orange-500 focus:outline-none'
 
 function statusTone(status: string): 'neutral' | 'violet' | 'green' | 'amber' {
   if (status === 'published') return 'green'
@@ -51,21 +51,21 @@ function humanizeKey(k: string): string {
 }
 
 function renderValue(v: unknown): React.ReactNode {
-  if (v == null) return <span className="text-slate-600">—</span>
+  if (v == null) return <span className="text-neutral-600">—</span>
   if (typeof v === 'number') {
-    return <span className="tabular-nums text-slate-200">{v.toLocaleString()}</span>
+    return <span className="tabular-nums text-neutral-200">{v.toLocaleString()}</span>
   }
-  if (typeof v === 'boolean') return <span className="text-slate-200">{v ? 'Yes' : 'No'}</span>
-  if (typeof v === 'string') return <span className="text-slate-200">{v}</span>
+  if (typeof v === 'boolean') return <span className="text-neutral-200">{v ? 'Yes' : 'No'}</span>
+  if (typeof v === 'string') return <span className="text-neutral-200">{v}</span>
   if (Array.isArray(v)) {
     return (
-      <span className="text-slate-400">
+      <span className="text-neutral-400">
         {v.length} item{v.length === 1 ? '' : 's'}
       </span>
     )
   }
   return (
-    <span className="text-slate-400">
+    <span className="text-neutral-400">
       {Object.keys(v as Record<string, unknown>).length} field
       {Object.keys(v as Record<string, unknown>).length === 1 ? '' : 's'}
     </span>
@@ -195,7 +195,7 @@ export default function EvidenceDetailPage() {
   if (error || !pack) {
     return (
       <div className="space-y-4">
-        <Link href="/dashboard/evidence" className="text-sm text-violet-300 hover:text-violet-200">
+        <Link href="/dashboard/evidence" className="text-sm text-orange-300 hover:text-orange-200">
           ← Back to evidence packs
         </Link>
         <Card>
@@ -219,12 +219,12 @@ export default function EvidenceDetailPage() {
       <div>
         <Link
           href="/dashboard/evidence"
-          className="text-sm text-violet-300 hover:text-violet-200"
+          className="text-sm text-orange-300 hover:text-orange-200"
         >
           ← Back to evidence packs
         </Link>
         <div className="mt-2 flex flex-wrap items-center gap-3">
-          <h1 className="text-2xl font-semibold text-slate-100">{pack.title}</h1>
+          <h1 className="text-2xl font-semibold text-neutral-100">{pack.title}</h1>
           <Badge tone={statusTone(pack.status)}>{pack.status}</Badge>
           {signedCount > 0 && (
             <Badge tone="sky">
@@ -232,7 +232,7 @@ export default function EvidenceDetailPage() {
             </Badge>
           )}
         </div>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-neutral-500">
           Created {new Date(pack.created_at).toLocaleString()}
           {pack.created_by ? ` by ${pack.created_by}` : ''}
         </p>
@@ -252,7 +252,7 @@ export default function EvidenceDetailPage() {
       {/* Source links */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Sources</h2>
+          <h2 className="text-sm font-semibold text-neutral-200">Sources</h2>
         </CardHeader>
         <CardBody className="flex flex-wrap gap-2">
           {pack.gap_run_id ? (
@@ -277,7 +277,7 @@ export default function EvidenceDetailPage() {
             </Link>
           ) : null}
           {!pack.gap_run_id && !pack.scenario_id && !pack.band_set_id && (
-            <span className="text-sm text-slate-500">No linked sources.</span>
+            <span className="text-sm text-neutral-500">No linked sources.</span>
           )}
         </CardBody>
       </Card>
@@ -286,13 +286,13 @@ export default function EvidenceDetailPage() {
       {pack.share_token && (
         <Card>
           <CardHeader>
-            <h2 className="text-sm font-semibold text-slate-200">Share link</h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-neutral-200">Share link</h2>
+            <p className="mt-1 text-xs text-neutral-500">
               Anyone with this link can view the pack read-only.
             </p>
           </CardHeader>
           <CardBody className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <code className="flex-1 overflow-x-auto rounded-lg border border-slate-800 bg-slate-950 px-3 py-2 text-xs text-violet-300">
+            <code className="flex-1 overflow-x-auto rounded-lg border border-neutral-800 bg-neutral-950 px-3 py-2 text-xs text-orange-300">
               {`${typeof window !== 'undefined' ? window.location.origin : ''}/share/evidence/${pack.share_token}`}
             </code>
             <Button variant="secondary" onClick={copyShareLink}>
@@ -305,15 +305,15 @@ export default function EvidenceDetailPage() {
       {/* Methodology */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Methodology</h2>
+          <h2 className="text-sm font-semibold text-neutral-200">Methodology</h2>
         </CardHeader>
         <CardBody>
           {pack.methodology ? (
-            <p className="whitespace-pre-wrap text-sm leading-relaxed text-slate-300">
+            <p className="whitespace-pre-wrap text-sm leading-relaxed text-neutral-300">
               {pack.methodology}
             </p>
           ) : (
-            <p className="text-sm text-slate-500">No methodology recorded for this pack.</p>
+            <p className="text-sm text-neutral-500">No methodology recorded for this pack.</p>
           )}
         </CardBody>
       </Card>
@@ -321,8 +321,8 @@ export default function EvidenceDetailPage() {
       {/* Pack contents */}
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Pack contents</h2>
-          <p className="mt-1 text-xs text-slate-500">
+          <h2 className="text-sm font-semibold text-neutral-200">Pack contents</h2>
+          <p className="mt-1 text-xs text-neutral-500">
             Snapshot of the figures captured at generation time.
           </p>
         </CardHeader>
@@ -346,7 +346,7 @@ export default function EvidenceDetailPage() {
               <TBody>
                 {contentEntries.map(([k, v]) => (
                   <TR key={k}>
-                    <TD className="font-medium text-slate-200">{humanizeKey(k)}</TD>
+                    <TD className="font-medium text-neutral-200">{humanizeKey(k)}</TD>
                     <TD>{renderValue(v)}</TD>
                   </TR>
                 ))}
@@ -354,11 +354,11 @@ export default function EvidenceDetailPage() {
             </Table>
           )}
           {contentEntries.length > 0 && (
-            <details className="border-t border-slate-800 px-4 py-3">
-              <summary className="cursor-pointer text-xs text-slate-400 hover:text-slate-200">
+            <details className="border-t border-neutral-800 px-4 py-3">
+              <summary className="cursor-pointer text-xs text-neutral-400 hover:text-neutral-200">
                 View raw contents JSON
               </summary>
-              <pre className="mt-3 max-h-80 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-400">
+              <pre className="mt-3 max-h-80 overflow-auto rounded-lg border border-neutral-800 bg-neutral-950 p-3 text-xs text-neutral-400">
                 {JSON.stringify(pack.contents, null, 2)}
               </pre>
             </details>
@@ -370,8 +370,8 @@ export default function EvidenceDetailPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center justify-between gap-3">
           <div>
-            <h2 className="text-sm font-semibold text-slate-200">Sign-off workflow</h2>
-            <p className="mt-1 text-xs text-slate-500">
+            <h2 className="text-sm font-semibold text-neutral-200">Sign-off workflow</h2>
+            <p className="mt-1 text-xs text-neutral-500">
               Capture approver attestations to certify these findings.
             </p>
           </div>
@@ -404,9 +404,9 @@ export default function EvidenceDetailPage() {
               <TBody>
                 {attestations.map((a) => (
                   <TR key={a.id}>
-                    <TD className="font-medium text-slate-200">{a.approver_name}</TD>
-                    <TD className="max-w-md text-slate-400">{a.note || '—'}</TD>
-                    <TD className="text-slate-400">
+                    <TD className="font-medium text-neutral-200">{a.approver_name}</TD>
+                    <TD className="max-w-md text-neutral-400">{a.note || '—'}</TD>
+                    <TD className="text-neutral-400">
                       {a.attested_at
                         ? new Date(a.attested_at).toLocaleString()
                         : new Date(a.created_at).toLocaleString()}
@@ -446,7 +446,7 @@ export default function EvidenceDetailPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Approver name
             </label>
             <input
@@ -457,7 +457,7 @@ export default function EvidenceDetailPage() {
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Note (optional)
             </label>
             <textarea

@@ -13,6 +13,7 @@ import { Modal } from '@/components/ui/Modal'
 import { Spinner } from '@/components/ui/Spinner'
 import { Stat } from '@/components/ui/Stat'
 import { Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
+import RightRail from '@/components/RightRail'
 
 interface Dataset {
   id: string
@@ -248,11 +249,12 @@ export default function GapRunsPage() {
   }, [runs])
 
   return (
-    <div className="space-y-6">
+    <div className="flex flex-col gap-6 xl:flex-row xl:items-start">
+    <div className="min-w-0 flex-1 space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Pay Gap Analysis</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Pay Gap Analysis</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Raw and regression-adjusted pay gaps with explained / unexplained decomposition.
           </p>
         </div>
@@ -271,18 +273,18 @@ export default function GapRunsPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">Runs</h2>
+          <h2 className="text-sm font-semibold text-neutral-200">Runs</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search runs…"
-              className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-48 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="all">All statuses</option>
               {statuses.map((s) => (
@@ -336,7 +338,7 @@ export default function GapRunsPage() {
                 {filtered.map((r) => (
                   <TR key={r.id} className="cursor-pointer">
                     <TD>
-                      <Link href={`/dashboard/gaps/${r.id}`} className="font-medium text-violet-300 hover:text-violet-200">
+                      <Link href={`/dashboard/gaps/${r.id}`} className="font-medium text-orange-300 hover:text-orange-200">
                         {r.reference_group || 'Auto reference'}
                       </Link>
                     </TD>
@@ -351,7 +353,7 @@ export default function GapRunsPage() {
                     <TD>
                       <Badge tone={statusTone(r.status)}>{r.status}</Badge>
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-400">
+                    <TD className="whitespace-nowrap text-neutral-400">
                       {r.created_at ? new Date(r.created_at).toLocaleDateString() : '—'}
                     </TD>
                     <TD className="text-right">
@@ -402,7 +404,7 @@ export default function GapRunsPage() {
           )}
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">Dataset</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">Dataset</label>
             {datasets.length === 0 ? (
               <p className="text-sm text-amber-300">
                 No datasets found.{' '}
@@ -414,7 +416,7 @@ export default function GapRunsPage() {
               <select
                 value={datasetId}
                 onChange={(e) => setDatasetId(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 {datasets.map((d) => (
                   <option key={d.id} value={d.id}>
@@ -426,13 +428,13 @@ export default function GapRunsPage() {
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Band set (optional, enables compa-adjusted gaps)
             </label>
             <select
               value={bandSetId}
               onChange={(e) => setBandSetId(e.target.value)}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="">None</option>
               {bandSets.map((b) => (
@@ -444,7 +446,7 @@ export default function GapRunsPage() {
           </div>
 
           <div>
-            <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-2 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Dimensions to analyze
             </label>
             <div className="flex flex-wrap gap-2">
@@ -457,8 +459,8 @@ export default function GapRunsPage() {
                     onClick={() => toggleDim(d.key)}
                     className={`rounded-full border px-3 py-1 text-sm transition-colors ${
                       active
-                        ? 'border-violet-500/40 bg-violet-500/20 text-violet-200'
-                        : 'border-slate-700 bg-slate-900 text-slate-400 hover:text-slate-200'
+                        ? 'border-orange-500/40 bg-orange-500/20 text-orange-200'
+                        : 'border-neutral-700 bg-neutral-900 text-neutral-400 hover:text-neutral-200'
                     }`}
                   >
                     {d.label}
@@ -469,26 +471,26 @@ export default function GapRunsPage() {
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Reference group (optional)
             </label>
             <input
               value={refGroup}
               onChange={(e) => setRefGroup(e.target.value)}
               placeholder="e.g. male, or leave blank for largest group"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </div>
 
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Label (optional)
             </label>
             <input
               value={label}
               onChange={(e) => setLabel(e.target.value)}
               placeholder="Q2 2026 pay equity audit"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </div>
         </form>
@@ -509,12 +511,14 @@ export default function GapRunsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-neutral-300">
           This permanently deletes the gap run
           {pendingDelete?.reference_group ? ` for “${pendingDelete.reference_group}”` : ''} and all of its results. This
           cannot be undone.
         </p>
       </Modal>
+    </div>
+    <RightRail />
     </div>
   )
 }

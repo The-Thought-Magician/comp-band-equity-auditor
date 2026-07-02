@@ -198,8 +198,8 @@ export default function ApiKeysPage() {
     <div className="space-y-6">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">API Keys</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">API Keys</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Issue keys for programmatic access. The full secret is shown once, at creation. Revoke or
             delete keys you no longer trust.
           </p>
@@ -219,18 +219,18 @@ export default function ApiKeysPage() {
 
       <Card>
         <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">Keys</h2>
+          <h2 className="text-sm font-semibold text-neutral-200">Keys</h2>
           <div className="flex flex-wrap items-center gap-2">
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search keys…"
-              className="w-48 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-48 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value as 'all' | 'active' | 'revoked')}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-1.5 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="all">All keys</option>
               <option value="active">Active</option>
@@ -278,9 +278,9 @@ export default function ApiKeysPage() {
               <TBody>
                 {filtered.map((k) => (
                   <TR key={k.id}>
-                    <TD className="font-medium text-slate-100">{k.name}</TD>
+                    <TD className="font-medium text-neutral-100">{k.name}</TD>
                     <TD>
-                      <code className="rounded bg-slate-950 px-2 py-0.5 font-mono text-xs text-violet-300">
+                      <code className="rounded bg-neutral-950 px-2 py-0.5 font-mono text-xs text-orange-300">
                         {k.key_prefix ? `${k.key_prefix}••••••••` : '••••••••'}
                       </code>
                     </TD>
@@ -291,10 +291,10 @@ export default function ApiKeysPage() {
                         <Badge tone="green">Active</Badge>
                       )}
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-400" title={fmtDate(k.last_used_at)}>
+                    <TD className="whitespace-nowrap text-neutral-400" title={fmtDate(k.last_used_at)}>
                       {fmtRelative(k.last_used_at)}
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-400">{fmtDate(k.created_at)}</TD>
+                    <TD className="whitespace-nowrap text-neutral-400">{fmtDate(k.created_at)}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
                         {!k.revoked && (
@@ -348,7 +348,7 @@ export default function ApiKeysPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">
               Key name
             </label>
             <input
@@ -356,9 +356,9 @@ export default function ApiKeysPage() {
               onChange={(e) => setNewName(e.target.value)}
               placeholder="e.g. HRIS sync, CI pipeline"
               autoFocus
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder:text-neutral-500 focus:border-orange-500 focus:outline-none"
             />
-            <p className="mt-2 text-xs text-slate-500">
+            <p className="mt-2 text-xs text-neutral-500">
               The full secret is displayed only once after creation. Store it somewhere safe.
             </p>
           </div>
@@ -379,7 +379,7 @@ export default function ApiKeysPage() {
             This is the only time the full key will be shown. It cannot be retrieved again.
           </div>
           <div className="flex items-stretch gap-2">
-            <code className="flex-1 overflow-x-auto rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 font-mono text-sm text-violet-200">
+            <code className="flex-1 overflow-x-auto rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 font-mono text-sm text-orange-200">
               {plaintext}
             </code>
             <Button variant="secondary" onClick={copyPlaintext}>
@@ -405,8 +405,8 @@ export default function ApiKeysPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
-          Revoking <span className="font-medium text-slate-100">{pendingRevoke?.name}</span> immediately
+        <p className="text-sm text-neutral-300">
+          Revoking <span className="font-medium text-neutral-100">{pendingRevoke?.name}</span> immediately
           blocks all requests made with it. The key record is kept for your audit log. This cannot be undone.
         </p>
       </Modal>
@@ -427,8 +427,8 @@ export default function ApiKeysPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
-          This permanently removes <span className="font-medium text-slate-100">{pendingDelete?.name}</span>{' '}
+        <p className="text-sm text-neutral-300">
+          This permanently removes <span className="font-medium text-neutral-100">{pendingDelete?.name}</span>{' '}
           and its record. Any requests using it will fail. This cannot be undone.
         </p>
       </Modal>

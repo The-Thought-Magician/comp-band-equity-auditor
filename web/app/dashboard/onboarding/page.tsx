@@ -197,8 +197,8 @@ export default function OnboardingPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-slate-100">Get started</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <h1 className="text-2xl font-semibold text-neutral-100">Get started</h1>
+        <p className="mt-1 text-sm text-neutral-400">
           Five steps from an empty workspace to a defensible pay-equity audit. Seed sample data to explore
           end to end in minutes.
         </p>
@@ -210,14 +210,14 @@ export default function OnboardingPage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex-1">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-slate-200">
+                <span className="text-sm font-medium text-neutral-200">
                   {completed === total ? 'All set!' : `${completed} of ${total} steps complete`}
                 </span>
-                <span className="text-sm font-semibold text-violet-300">{pct}%</span>
+                <span className="text-sm font-semibold text-orange-300">{pct}%</span>
               </div>
-              <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+              <div className="mt-2 h-2 w-full overflow-hidden rounded-full bg-neutral-800">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-violet-600 to-violet-400 transition-all"
+                  className="h-full rounded-full bg-gradient-to-r from-orange-600 to-orange-400 transition-all"
                   style={{ width: `${pct}%` }}
                 />
               </div>
@@ -226,16 +226,16 @@ export default function OnboardingPage() {
               <Button onClick={handleSeed} disabled={seeding}>
                 {seeding ? 'Seeding...' : hasData ? 'Re-seed sample' : 'Seed sample org'}
               </Button>
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-neutral-500">
                 {hasData ? 'Workspace already has data' : 'Synthetic ~80-employee dataset'}
               </span>
             </div>
           </div>
-          {seedMsg && <p className="text-sm text-violet-300">{seedMsg}</p>}
+          {seedMsg && <p className="text-sm text-orange-300">{seedMsg}</p>}
           {nextStep && (
-            <div className="flex items-center justify-between rounded-lg border border-violet-500/30 bg-violet-500/10 px-4 py-3">
-              <div className="text-sm text-slate-200">
-                <span className="text-slate-400">Next up:</span>{' '}
+            <div className="flex items-center justify-between rounded-lg border border-orange-500/30 bg-orange-500/10 px-4 py-3">
+              <div className="text-sm text-neutral-200">
+                <span className="text-neutral-400">Next up:</span>{' '}
                 <span className="font-medium">{nextStep.title}</span>
               </div>
               <Link href={nextStep.href}>
@@ -251,7 +251,7 @@ export default function OnboardingPage() {
       {/* Checklist */}
       <Card>
         <CardHeader>
-          <h2 className="text-base font-semibold text-slate-100">Setup checklist</h2>
+          <h2 className="text-base font-semibold text-neutral-100">Setup checklist</h2>
         </CardHeader>
         <CardBody className="space-y-3">
           {steps.map((s, i) => (
@@ -260,33 +260,33 @@ export default function OnboardingPage() {
               className={`flex items-start gap-4 rounded-xl border px-4 py-4 ${
                 s.done
                   ? 'border-emerald-500/30 bg-emerald-500/5'
-                  : 'border-slate-800 bg-slate-900/40'
+                  : 'border-neutral-800 bg-neutral-900/40'
               }`}
             >
               <div
                 className={`mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full border text-sm font-semibold ${
                   s.done
                     ? 'border-emerald-500/40 bg-emerald-500/20 text-emerald-300'
-                    : 'border-slate-700 bg-slate-800 text-slate-400'
+                    : 'border-neutral-700 bg-neutral-800 text-neutral-400'
                 }`}
               >
                 {s.done ? '✓' : i + 1}
               </div>
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
-                  <h3 className="text-sm font-medium text-slate-100">{s.title}</h3>
+                  <h3 className="text-sm font-medium text-neutral-100">{s.title}</h3>
                   {s.done ? (
                     <Badge tone="green">Done</Badge>
                   ) : (
                     <Badge tone="neutral">Pending</Badge>
                   )}
                   {typeof s.count === 'number' && s.count > 0 && (
-                    <span className="text-xs text-slate-500">
+                    <span className="text-xs text-neutral-500">
                       {s.count} {s.count === 1 ? 'item' : 'items'}
                     </span>
                   )}
                 </div>
-                <p className="mt-1 text-sm text-slate-400">{s.description}</p>
+                <p className="mt-1 text-sm text-neutral-400">{s.description}</p>
               </div>
               <div className="flex-shrink-0">
                 <Link href={s.href}>
@@ -303,26 +303,26 @@ export default function OnboardingPage() {
       {/* Quick links */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <Link href="/dashboard">
-          <Card className="h-full transition-colors hover:border-violet-500/40">
+          <Card className="h-full transition-colors hover:border-orange-500/40">
             <CardBody>
-              <div className="text-sm font-medium text-slate-100">Dashboard</div>
-              <p className="mt-1 text-xs text-slate-500">KPI tiles and outlier board.</p>
+              <div className="text-sm font-medium text-neutral-100">Dashboard</div>
+              <p className="mt-1 text-xs text-neutral-500">KPI tiles and outlier board.</p>
             </CardBody>
           </Card>
         </Link>
         <Link href="/dashboard/evidence">
-          <Card className="h-full transition-colors hover:border-violet-500/40">
+          <Card className="h-full transition-colors hover:border-orange-500/40">
             <CardBody>
-              <div className="text-sm font-medium text-slate-100">Evidence packs</div>
-              <p className="mt-1 text-xs text-slate-500">Auditable methodology + sign-off.</p>
+              <div className="text-sm font-medium text-neutral-100">Evidence packs</div>
+              <p className="mt-1 text-xs text-neutral-500">Auditable methodology + sign-off.</p>
             </CardBody>
           </Card>
         </Link>
         <Link href="/dashboard/settings">
-          <Card className="h-full transition-colors hover:border-violet-500/40">
+          <Card className="h-full transition-colors hover:border-orange-500/40">
             <CardBody>
-              <div className="text-sm font-medium text-slate-100">Settings</div>
-              <p className="mt-1 text-xs text-slate-500">Currency, FX, tags, billing.</p>
+              <div className="text-sm font-medium text-neutral-100">Settings</div>
+              <p className="mt-1 text-xs text-neutral-500">Currency, FX, tags, billing.</p>
             </CardBody>
           </Card>
         </Link>

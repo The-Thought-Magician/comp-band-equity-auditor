@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { Spinner } from '@/components/ui/Spinner'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Table, THead, TBody, TR, TH, TD } from '@/components/ui/Table'
+import RightRail from '@/components/RightRail'
 
 interface Tile {
   key: string
@@ -172,11 +173,12 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="flex flex-col gap-6 xl:flex-row xl:items-start">
+    <div className="min-w-0 flex-1 space-y-8">
       <header className="flex flex-wrap items-end justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Dashboard</h1>
-          <p className="mt-1 text-sm text-slate-500">
+          <h1 className="text-2xl font-semibold text-neutral-100">Dashboard</h1>
+          <p className="mt-1 text-sm text-neutral-500">
             Pay-equity snapshot across your latest engine run and gap analysis.
           </p>
         </div>
@@ -209,7 +211,7 @@ export default function DashboardPage() {
                 {seeding ? 'Seeding sample org...' : 'Seed sample organization'}
               </Button>
               {seedError && <p className="text-xs text-rose-400">{seedError}</p>}
-              <Link href="/dashboard/datasets" className="text-xs text-slate-500 hover:text-slate-300">
+              <Link href="/dashboard/datasets" className="text-xs text-neutral-500 hover:text-neutral-300">
                 or upload your own dataset →
               </Link>
             </div>
@@ -219,13 +221,13 @@ export default function DashboardPage() {
         <>
           {/* KPI tiles */}
           <section>
-            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            <h2 className="mb-3 text-xs font-semibold uppercase tracking-wide text-neutral-500">
               Key metrics
             </h2>
             {tiles.length === 0 ? (
               <Card>
                 <CardBody>
-                  <p className="text-sm text-slate-500">
+                  <p className="text-sm text-neutral-500">
                     No metrics computed yet. Run the positioning engine and a gap analysis to populate KPIs.
                   </p>
                 </CardBody>
@@ -244,8 +246,8 @@ export default function DashboardPage() {
             <Card>
               <CardHeader className="flex items-center justify-between">
                 <div>
-                  <h2 className="text-base font-semibold text-slate-100">Outlier board</h2>
-                  <p className="text-xs text-slate-500">
+                  <h2 className="text-base font-semibold text-neutral-100">Outlier board</h2>
+                  <p className="text-xs text-neutral-500">
                     Employees flagged out of band or compressed in the latest engine run.
                   </p>
                 </div>
@@ -253,7 +255,7 @@ export default function DashboardPage() {
               </CardHeader>
               <CardBody className="px-0 py-0">
                 {outliers.length === 0 ? (
-                  <div className="px-5 py-10 text-center text-sm text-slate-500">
+                  <div className="px-5 py-10 text-center text-sm text-neutral-500">
                     No outliers detected in the latest run. Either there is no engine run yet, or
                     everyone is within their target band.
                     <div className="mt-4">
@@ -282,17 +284,17 @@ export default function DashboardPage() {
                         return (
                           <TR key={o.id ?? o.employee_id ?? `${o.employee_ref ?? 'row'}-${i}`}>
                             <TD>
-                              <div className="font-medium text-slate-200">
+                              <div className="font-medium text-neutral-200">
                                 {o.name ?? o.employee_ref ?? '—'}
                               </div>
                               {o.employee_ref && o.name && (
-                                <div className="text-xs text-slate-500">{o.employee_ref}</div>
+                                <div className="text-xs text-neutral-500">{o.employee_ref}</div>
                               )}
                             </TD>
                             <TD>
-                              <span className="text-slate-300">{o.level ?? '—'}</span>
+                              <span className="text-neutral-300">{o.level ?? '—'}</span>
                               {o.role_family && (
-                                <span className="text-slate-500"> · {o.role_family}</span>
+                                <span className="text-neutral-500"> · {o.role_family}</span>
                               )}
                             </TD>
                             <TD>{o.geo ?? '—'}</TD>
@@ -313,7 +315,7 @@ export default function DashboardPage() {
                             </TD>
                             <TD>
                               {flags.length === 0 ? (
-                                <span className="text-slate-600">—</span>
+                                <span className="text-neutral-600">—</span>
                               ) : (
                                 <div className="flex flex-wrap gap-1">
                                   {flags.map((f) => (
@@ -343,10 +345,10 @@ export default function DashboardPage() {
               { href: '/dashboard/evidence', label: 'Evidence Packs', desc: 'Board-ready sign-off' },
             ].map((q) => (
               <Link key={q.href} href={q.href}>
-                <Card className="h-full transition-colors hover:border-violet-500/40">
+                <Card className="h-full transition-colors hover:border-orange-500/40">
                   <CardBody>
-                    <div className="text-sm font-semibold text-violet-300">{q.label}</div>
-                    <div className="mt-1 text-xs text-slate-500">{q.desc}</div>
+                    <div className="text-sm font-semibold text-orange-300">{q.label}</div>
+                    <div className="mt-1 text-xs text-neutral-500">{q.desc}</div>
                   </CardBody>
                 </Card>
               </Link>
@@ -354,6 +356,8 @@ export default function DashboardPage() {
           </section>
         </>
       )}
+    </div>
+    <RightRail />
     </div>
   )
 }

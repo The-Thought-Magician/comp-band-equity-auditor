@@ -209,8 +209,8 @@ export default function BandSetsPage() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-slate-100">Comp Bands</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <h1 className="text-2xl font-semibold text-neutral-100">Comp Bands</h1>
+          <p className="mt-1 text-sm text-neutral-400">
             Versioned salary band sets. Draft, clone, and publish immutable versions.
           </p>
         </div>
@@ -249,12 +249,12 @@ export default function BandSetsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search label, version, notes…"
-              className="w-64 rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-64 rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             />
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             >
               <option value="all">All statuses</option>
               <option value="draft">Draft</option>
@@ -262,7 +262,7 @@ export default function BandSetsPage() {
               <option value="archived">Archived</option>
             </select>
           </div>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-neutral-500">
             {filtered.length} of {bandSets.length}
           </span>
         </CardHeader>
@@ -307,14 +307,14 @@ export default function BandSetsPage() {
                       <TD>
                         <Link
                           href={`/dashboard/bands/${bs.id}`}
-                          className="font-medium text-violet-300 hover:text-violet-200"
+                          className="font-medium text-orange-300 hover:text-orange-200"
                         >
                           {bs.label || `Band set ${String(bs.id).slice(0, 8)}`}
                         </Link>
-                        {bs.notes && <div className="mt-0.5 text-xs text-slate-500">{bs.notes}</div>}
+                        {bs.notes && <div className="mt-0.5 text-xs text-neutral-500">{bs.notes}</div>}
                       </TD>
                       <TD>
-                        <span className="font-mono text-slate-400">v{bs.version ?? '—'}</span>
+                        <span className="font-mono text-neutral-400">v{bs.version ?? '—'}</span>
                       </TD>
                       <TD>
                         <Badge tone={statusTone(bs.status)}>{bs.status || 'draft'}</Badge>
@@ -376,7 +376,7 @@ export default function BandSetsPage() {
               value={form.label}
               onChange={(e) => setForm({ ...form, label: e.target.value })}
               placeholder="2026 Engineering Bands"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </Field>
           <Field label="Effective from (optional)">
@@ -384,7 +384,7 @@ export default function BandSetsPage() {
               type="date"
               value={form.effective_from}
               onChange={(e) => setForm({ ...form, effective_from: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
             />
           </Field>
           <Field label="Notes (optional)">
@@ -393,7 +393,7 @@ export default function BandSetsPage() {
               onChange={(e) => setForm({ ...form, notes: e.target.value })}
               rows={3}
               placeholder="Context for this version…"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder-slate-500 focus:border-violet-500 focus:outline-none"
+              className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 placeholder-neutral-500 focus:border-orange-500 focus:outline-none"
             />
           </Field>
         </div>
@@ -415,14 +415,14 @@ export default function BandSetsPage() {
           </>
         }
       >
-        <p className="mb-4 text-sm text-slate-400">
+        <p className="mb-4 text-sm text-neutral-400">
           Creates a new draft version with all bands copied from this set.
         </p>
         <Field label="New label">
           <input
             value={cloneLabel}
             onChange={(e) => setCloneLabel(e.target.value)}
-            className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+            className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
           />
         </Field>
       </Modal>
@@ -443,8 +443,8 @@ export default function BandSetsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
-          Delete <span className="font-medium text-slate-100">{deleteTarget?.label || 'this band set'}</span> and all its
+        <p className="text-sm text-neutral-300">
+          Delete <span className="font-medium text-neutral-100">{deleteTarget?.label || 'this band set'}</span> and all its
           bands? This cannot be undone.
         </p>
       </Modal>
@@ -472,7 +472,7 @@ export default function BandSetsPage() {
               <select
                 value={diffA}
                 onChange={(e) => setDiffA(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 <option value="">Select…</option>
                 {bandSets.map((bs) => (
@@ -486,7 +486,7 @@ export default function BandSetsPage() {
               <select
                 value={diffB}
                 onChange={(e) => setDiffB(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 focus:border-violet-500 focus:outline-none"
+                className="w-full rounded-lg border border-neutral-700 bg-neutral-950 px-3 py-2 text-sm text-neutral-200 focus:border-orange-500 focus:outline-none"
               >
                 <option value="">Select…</option>
                 {bandSets.map((bs) => (
@@ -517,7 +517,7 @@ export default function BandSetsPage() {
               {(diffResult.added?.length ?? 0) +
                 (diffResult.removed?.length ?? 0) +
                 (diffResult.changed?.length ?? 0) ===
-                0 && <p className="text-sm text-slate-500">No differences between these versions.</p>}
+                0 && <p className="text-sm text-neutral-500">No differences between these versions.</p>}
             </div>
           )}
         </div>
@@ -529,7 +529,7 @@ export default function BandSetsPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-400">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-neutral-400">{label}</span>
       {children}
     </label>
   )
@@ -549,14 +549,14 @@ function DiffSection({
     <div>
       <div className="mb-2 flex items-center gap-2">
         <Badge tone={tone}>{title}</Badge>
-        <span className="text-xs text-slate-500">{items.length}</span>
+        <span className="text-xs text-neutral-500">{items.length}</span>
       </div>
-      <div className="max-h-48 space-y-1 overflow-y-auto rounded-lg border border-slate-800 bg-slate-950/60 p-2">
+      <div className="max-h-48 space-y-1 overflow-y-auto rounded-lg border border-neutral-800 bg-neutral-950/60 p-2">
         {items.map((it, i) => (
-          <div key={i} className="rounded px-2 py-1 font-mono text-xs text-slate-300">
+          <div key={i} className="rounded px-2 py-1 font-mono text-xs text-neutral-300">
             {[it.level, it.role_family, it.geo].filter(Boolean).join(' · ') || `row ${i + 1}`}
             {it.field != null && (
-              <span className="ml-2 text-slate-500">
+              <span className="ml-2 text-neutral-500">
                 {String(it.field)}: {String(it.from ?? '∅')} → {String(it.to ?? '∅')}
               </span>
             )}
